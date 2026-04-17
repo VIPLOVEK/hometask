@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeTask — Sign In</title>
+  <script>
+    try{if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');}catch(e){}
+  </script>
+  <style>
+    :root{
+      --primary:#6366f1;--primary-dk:#4f46e5;--primary-lt:#e0e7ff;
+      --c-bg:#f9fafb;--c-bg-card:#fff;--c-bg-subtle:#f3f4f6;
+      --c-border:#e5e7eb;--c-border-in:#d1d5db;
+      --c-text:#111827;--c-text-muted:#6b7280;--c-text-dim:#9ca3af;
+      --danger:#ef4444;--danger-lt:#fee2e2;
+      --ok:#10b981;
+      --shadow-lg:0 20px 40px rgba(0,0,0,.12);
+      --radius:14px;--radius-sm:8px;--t:.15s;
+    }
+    [data-theme="dark"]{
+      --c-bg:#0f172a;--c-bg-card:#1e293b;--c-bg-subtle:#334155;
+      --c-border:#334155;--c-border-in:#475569;
+      --c-text:#f1f5f9;--c-text-muted:#94a3b8;--c-text-dim:#64748b;
+      --primary-lt:rgba(99,102,241,.18);
+      --danger-lt:rgba(239,68,68,.15);
+      --shadow-lg:0 20px 40px rgba(0,0,0,.5);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+      background:var(--c-bg);color:var(--c-text);min-height:100vh;
+      display:flex;align-items:center;justify-content:center;padding:20px;
+      transition:background var(--t)}
+    .card{background:var(--c-bg-card);border-radius:var(--radius);
+      box-shadow:var(--shadow-lg);width:100%;max-width:400px;padding:36px;
+      border:1px solid var(--c-border)}
+    .logo{text-align:center;margin-bottom:28px}
+    .logo-icon{font-size:48px;margin-bottom:8px}
+    .logo-name{font-size:24px;font-weight:800;
+      background:linear-gradient(135deg,var(--primary),#ec4899);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .logo-sub{font-size:13px;color:var(--c-text-dim);margin-top:3px}
+    .form-title{font-size:18px;font-weight:700;color:var(--c-text);margin-bottom:6px}
+    .form-sub{font-size:13px;color:var(--c-text-muted);margin-bottom:24px}
+    .fg{margin-bottom:16px}
+    label{display:block;font-size:12px;font-weight:600;color:var(--c-text-muted);margin-bottom:5px}
+    input{width:100%;padding:11px 13px;border:1.5px solid var(--c-border-in);
+      border-radius:var(--radius-sm);font-size:14px;color:var(--c-text);
+      background:var(--c-bg-card);outline:none;transition:border-color var(--t);font-family:inherit}
+    input:focus{border-color:var(--primary)}
+    input::placeholder{color:var(--c-text-dim)}
+    .btn{width:100%;padding:12px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;
+      cursor:pointer;border:none;transition:all var(--t);font-family:inherit;margin-top:4px}
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-primary:hover{background:var(--primary-dk)}
+    .btn-primary:disabled{opacity:.6;cursor:not-allowed}
+    .error{background:var(--danger-lt);color:var(--danger);padding:10px 14px;
+      border-radius:var(--radius-sm);font-size:13px;font-weight:500;
+      margin-bottom:16px;display:none}
+    .error.show{display:block}
+    .footer{text-align:center;margin-top:20px;font-size:12px;color:var(--c-text-dim)}
+    .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);
+      border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <div class="logo-icon">🏠</div>
+    <div class="logo-name">HomeTask</div>
+    <div class="logo-sub">Home Task Manager</div>
+  </div>
+  <div class="form-title">Welcome back</div>
+  <div class="form-sub">Sign in to access your household tasks</div>
+  <div class="error" id="errorMsg"></div>
+  <form id="loginForm" onsubmit="doLogin(event)">
+    <div class="fg">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username" autocomplete="username" required>
+    </div>
+    <div class="fg">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" id="submitBtn">Sign In</button>
+  </form>
+  <div class="footer">Private household app · Access by invite only</div>
+</div>
+
+<script>
+  // If already logged in, skip to app
+  (function(){
+    const token = localStorage.getItem('ht_token');
+    if (token) window.location.replace('/');
+  })();
+
+  async function doLogin(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    const btn = document.getElementById('submitBtn');
+    const errEl = document.getElementById('errorMsg');
+
+    errEl.classList.remove('show');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Signing in…';
+
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showError(data.error || 'Sign in failed. Please try again.');
+        return;
+      }
+      localStorage.setItem('ht_token', data.token);
+      localStorage.setItem('ht_user', data.user);
+      window.location.replace('/');
+    } catch (err) {
+      showError('Network error — please check your connection.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    }
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.classList.add('show');
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = 'Sign In';
+  }
+</script>
+</body>
+</html>
