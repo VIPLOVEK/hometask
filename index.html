@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#16a34a">
+  <meta name="theme-color" content="#6B8E23">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>HomeTask — Home Task Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Anti-flash: set theme before first paint -->
   <script>
     try{var _t=JSON.parse(localStorage.getItem('hometask_v1')||'{}');
@@ -15,84 +17,82 @@
       document.documentElement.setAttribute('data-theme','dark');}catch(e){}
   </script>
   <style>
-    /* ── TOKENS: LIGHT ─────────────────────────────────────────── */
+    /* ── TOKENS: LIGHT — Modern Botanical ────────────────────── */
     :root {
-      /* Warm cream backgrounds */
-      --c-bg:          #f6f4f0;
-      --c-bg-card:     #ffffff;
-      --c-bg-input:    #ffffff;
-      --c-bg-subtle:   #edeae4;
-      --c-border:      #e2dfd8;
-      --c-border-in:   #cdc9c1;
-      --c-text:        #1c1917;
-      --c-text-muted:  #78716c;
-      --c-text-dim:    #a8a29e;
+      --c-bg:          #FAFAF8;  /* Alabaster */
+      --c-bg-card:     #FFFFFF;
+      --c-bg-input:    #FFFFFF;
+      --c-bg-subtle:   #F2EFE8;
+      --c-border:      #E8E3DA;
+      --c-border-in:   #D6CFC3;
+      --c-text:        #2C2416;
+      --c-text-muted:  #7A6E5E;
+      --c-text-dim:    #B0A492;
 
-      /* Forest green brand */
-      --primary:       #16a34a;
-      --primary-dk:    #15803d;
-      --primary-lt:    #dcfce7;
-      --primary-tx:    #166534;
+      /* Olive Drab brand */
+      --primary:       #6B8E23;
+      --primary-dk:    #556B1A;
+      --primary-lt:    #EFF4DC;
+      --primary-tx:    #4A6118;
 
       /* Warm people colors */
-      --me-color:      #0369a1;
-      --me-light:      #e0f2fe;
-      --wife-color:    #be185d;
-      --wife-light:    #fce7f3;
-      --both-color:    #7c3aed;
-      --both-light:    #ede9fe;
+      --me-color:      #5B6FA6;
+      --me-light:      #EAEEf8;
+      --wife-color:    #C2714F;  /* Terracotta */
+      --wife-light:    #FAF0EB;
+      --both-color:    #8B7355;
+      --both-light:    #F5EFE5;
 
-      /* Status — warm tones */
-      --ok:            #16a34a;
-      --ok-lt:         #dcfce7;
-      --danger:        #dc2626;
-      --danger-lt:     #fee2e2;
-      --warn:          #d97706;
-      --warn-lt:       #fef3c7;
-      --info:          #0284c7;
-      --info-lt:       #e0f2fe;
+      /* Status */
+      --ok:            #6B8E23;
+      --ok-lt:         #EFF4DC;
+      --danger:        #E67E22;  /* Carrot Orange — overdue */
+      --danger-lt:     #FDF0E6;
+      --warn:          #B8860B;
+      --warn-lt:       #FBF5E0;
+      --info:          #5B6FA6;
+      --info-lt:       #EAEEf8;
 
-      /* Warm shadows */
-      --shadow-sm:     0 1px 3px rgba(28,25,23,.06);
-      --shadow-md:     0 4px 14px rgba(28,25,23,.09);
-      --shadow-lg:     0 14px 30px rgba(28,25,23,.13),0 4px 8px rgba(28,25,23,.06);
+      /* Soft neumorphism-lite shadows */
+      --shadow-sm:     0 2px 8px rgba(44,36,22,.06),0 1px 2px rgba(44,36,22,.04);
+      --shadow-md:     0 8px 28px rgba(44,36,22,.09),0 2px 6px rgba(44,36,22,.05);
+      --shadow-lg:     0 20px 50px rgba(44,36,22,.11),0 6px 14px rgba(44,36,22,.06);
 
-      --sidebar-w:     262px;
+      --sidebar-w:     272px;
       --nav-h:         64px;
-      --radius:        14px;
-      --radius-sm:     10px;
-      --radius-lg:     20px;
+      --radius:        20px;
+      --radius-sm:     14px;
+      --radius-lg:     28px;
       --t:             .18s;
     }
 
-    /* ── TOKENS: DARK ──────────────────────────────────────────── */
+    /* ── TOKENS: DARK — Warm Dark ──────────────────────────────── */
     [data-theme="dark"] {
-      /* Warm dark — brown-black, not cold slate */
-      --c-bg:          #18110c;
-      --c-bg-card:     #231a14;
-      --c-bg-input:    #231a14;
-      --c-bg-subtle:   #332619;
-      --c-border:      #3d2e1e;
-      --c-border-in:   #4e3c28;
-      --c-text:        #faf6f1;
-      --c-text-muted:  #b5a898;
-      --c-text-dim:    #7d6b5a;
+      --c-bg:          #1A1510;
+      --c-bg-card:     #231E18;
+      --c-bg-input:    #231E18;
+      --c-bg-subtle:   #2D2720;
+      --c-border:      #3D3628;
+      --c-border-in:   #4E4538;
+      --c-text:        #F5F0E8;
+      --c-text-muted:  #B8AA98;
+      --c-text-dim:    #7A6E60;
 
-      --primary-lt:    rgba(22,163,74,.16);
-      --primary-tx:    #4ade80;
+      --primary-lt:    rgba(107,142,35,.15);
+      --primary-tx:    #A8C45A;
 
-      --me-light:      rgba(3,105,161,.20);
-      --wife-light:    rgba(190,24,93,.16);
-      --both-light:    rgba(124,58,237,.18);
+      --me-light:      rgba(91,111,166,.18);
+      --wife-light:    rgba(194,113,79,.16);
+      --both-light:    rgba(139,115,85,.16);
 
-      --ok-lt:         rgba(22,163,74,.16);
-      --danger-lt:     rgba(220,38,38,.16);
-      --warn-lt:       rgba(217,119,6,.16);
-      --info-lt:       rgba(2,132,199,.16);
+      --ok-lt:         rgba(107,142,35,.15);
+      --danger-lt:     rgba(230,126,34,.15);
+      --warn-lt:       rgba(184,134,11,.14);
+      --info-lt:       rgba(91,111,166,.16);
 
-      --shadow-sm:     0 1px 4px rgba(0,0,0,.5);
-      --shadow-md:     0 4px 14px rgba(0,0,0,.6);
-      --shadow-lg:     0 14px 30px rgba(0,0,0,.7);
+      --shadow-sm:     0 2px 8px rgba(0,0,0,.45);
+      --shadow-md:     0 8px 24px rgba(0,0,0,.55);
+      --shadow-lg:     0 20px 50px rgba(0,0,0,.65);
     }
 
     /* ── RESET ─────────────────────────────────────────────────── */
@@ -101,6 +101,8 @@
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
       background:var(--c-bg);color:var(--c-text);min-height:100vh;
       transition:background var(--t),color var(--t);line-height:1.5}
+    h1,h2,h3,.topbar-title,.card-title,.set-title,.modal-ttl,.room-name,.stat-label,.section-hdr-text{
+      font-family:'Lora',Georgia,'Times New Roman',serif}
     button{font-family:inherit;cursor:pointer}
     input,select,textarea{font-family:inherit}
     a{color:var(--primary)}
@@ -110,22 +112,24 @@
     /* ── LAYOUT SHELL ──────────────────────────────────────────── */
     .app{display:flex;min-height:100vh}
 
-    /* Sidebar — warm cream with green tint */
+    /* Sidebar — glassmorphism */
     .sidebar{width:var(--sidebar-w);
-      background:linear-gradient(180deg,#f0faf2 0%,#f6f4f0 100%);
-      border-right:1px solid var(--c-border);
+      background:rgba(250,250,248,.78);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-right:1px solid rgba(107,142,35,.18);
       display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;
       overflow-y:auto;z-index:100;transition:background var(--t)}
-    [data-theme="dark"] .sidebar{background:linear-gradient(180deg,#1a2018 0%,#18110c 100%)}
+    [data-theme="dark"] .sidebar{background:rgba(26,21,16,.82);border-right:1px solid rgba(107,142,35,.12)}
     .sidebar-logo{padding:22px 18px 18px;border-bottom:1px solid var(--c-border)}
     .logo-mark{display:flex;align-items:center;gap:9px;margin-bottom:3px}
     .logo-icon-wrap{width:36px;height:36px;border-radius:10px;
-      background:linear-gradient(135deg,var(--primary),#d97706);
+      background:linear-gradient(135deg,var(--primary),#C2714F);
       display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
-      box-shadow:0 2px 8px rgba(22,163,74,.35)}
+      box-shadow:0 2px 8px rgba(107,142,35,.35)}
     .logo-text{font-size:18px;font-weight:800;letter-spacing:-.3px;
-      background:linear-gradient(135deg,var(--primary),#d97706);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+      background:linear-gradient(135deg,var(--primary),#C2714F);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      font-family:'Lora',Georgia,serif}
     .logo-sub{font-size:11px;color:var(--c-text-dim);margin-top:1px;letter-spacing:.01em}
     .sidebar-nav{padding:12px 8px;flex:1}
     .nav-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
@@ -135,20 +139,27 @@
       margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
     .nav-item:hover{background:var(--c-bg-subtle);color:var(--c-text)}
     .nav-item.active{background:var(--primary);color:#fff;font-weight:600;
-      box-shadow:0 2px 8px rgba(22,163,74,.35)}
+      box-shadow:0 2px 8px rgba(107,142,35,.35)}
     .nav-item.active .nav-icon{filter:none}
     .nav-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
     .nav-badge{margin-left:auto;background:var(--danger);color:#fff;font-size:9.5px;
       font-weight:700;padding:2px 6px;border-radius:100px;min-width:18px;text-align:center}
     .nav-item.active .nav-badge{background:#fff;color:var(--danger)}
     .sidebar-bottom{padding:12px 14px;border-top:1px solid var(--c-border)}
-    .member-chips{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
-    .member-chip{display:flex;align-items:center;gap:5px;padding:5px 10px;
-      border-radius:100px;font-size:11.5px;font-weight:600}
-    .member-chip.me{background:var(--me-light);color:var(--me-color)}
-    .member-chip.wife{background:var(--wife-light);color:var(--wife-color)}
-    .chip-av{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;
-      justify-content:center;font-size:10px;font-weight:700;background:rgba(0,0,0,.1)}
+    .member-chips{display:flex;gap:8px;margin-bottom:12px}
+    .avatar-bubble{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
+      padding:10px 6px;border-radius:var(--radius-sm);background:var(--c-bg-subtle);
+      transition:all var(--t);cursor:default}
+    .avatar-inner{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;
+      justify-content:center;font-size:17px;font-weight:800;color:#fff;
+      transition:box-shadow var(--t);font-family:'Inter',sans-serif}
+    .avatar-bubble.me .avatar-inner{background:linear-gradient(135deg,var(--me-color),#7B8FC0)}
+    .avatar-bubble.wife .avatar-inner{background:linear-gradient(135deg,var(--wife-color),#D4895C)}
+    .avatar-bubble.leading .avatar-inner{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--primary)}
+    .avatar-bubble.leading{background:var(--primary-lt)}
+    .avatar-name{font-size:11px;font-weight:600;color:var(--c-text)}
+    .avatar-score{font-size:10px;color:var(--c-text-dim)}
+    .avatar-crown{font-size:12px;line-height:1}
     .sidebar-actions{display:flex;gap:6px;margin-bottom:8px}
     .icon-btn{width:36px;height:36px;border-radius:var(--radius-sm);border:1px solid var(--c-border);
       background:var(--c-bg-card);display:flex;align-items:center;justify-content:center;
@@ -173,11 +184,11 @@
     .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
 
     /* Topbar */
-    .topbar{background:rgba(246,244,240,.92);backdrop-filter:blur(12px);
+    .topbar{background:rgba(250,250,248,.92);backdrop-filter:blur(12px);
       border-bottom:1px solid var(--c-border);
       padding:14px 26px;display:flex;align-items:center;justify-content:space-between;
       position:sticky;top:0;z-index:50;transition:background var(--t)}
-    [data-theme="dark"] .topbar{background:rgba(24,17,12,.92)}
+    [data-theme="dark"] .topbar{background:rgba(26,21,16,.92)}
     .topbar-title{font-size:17px;font-weight:700;color:var(--c-text);letter-spacing:-.2px}
     .topbar-right{display:flex;align-items:center;gap:9px}
     .search-box{display:flex;align-items:center;gap:7px;background:var(--c-bg-card);
@@ -191,9 +202,9 @@
 
     /* Bottom nav */
     .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);
-      background:rgba(246,244,240,.95);backdrop-filter:blur(12px);
+      background:rgba(250,250,248,.95);backdrop-filter:blur(12px);
       border-top:1px solid var(--c-border);z-index:100;padding:0 8px}
-    [data-theme="dark"] .bottom-nav{background:rgba(24,17,12,.95)}
+    [data-theme="dark"] .bottom-nav{background:rgba(26,21,16,.95)}
     .bnav-inner{display:flex;height:100%}
     .bnav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
       gap:3px;border:none;background:none;color:var(--c-text-dim);font-size:10px;
@@ -206,8 +217,8 @@
     /* ── BUTTONS ────────────────────────────────────────────────── */
     .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:100px;
       font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all var(--t);font-family:inherit;letter-spacing:-.01em}
-    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(22,163,74,.35)}
-    .btn-primary:hover{background:var(--primary-dk);box-shadow:0 4px 14px rgba(22,163,74,.4);transform:translateY(-1px)}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(107,142,35,.35)}
+    .btn-primary:hover{background:var(--primary-dk);box-shadow:0 4px 14px rgba(107,142,35,.4);transform:translateY(-1px)}
     .btn-primary:active{transform:translateY(0)}
     .btn-secondary{background:var(--c-bg-card);color:var(--c-text-muted);border:1.5px solid var(--c-border);box-shadow:var(--shadow-sm)}
     .btn-secondary:hover{border-color:var(--c-border-in);color:var(--c-text);background:var(--c-bg-subtle)}
@@ -393,8 +404,17 @@
     .rooms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
     .room-card{background:var(--c-bg-card);border-radius:var(--radius);padding:20px 18px;
       border:1px solid var(--c-border);cursor:pointer;transition:all var(--t);
-      box-shadow:var(--shadow-sm);text-align:center}
+      box-shadow:var(--shadow-sm);text-align:center;position:relative;overflow:hidden}
     .room-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+    .room-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+    .room-card[data-room="kitchen"]::before{background:linear-gradient(90deg,#E8B86D,#F4A261)}
+    .room-card[data-room="bathroom"]::before{background:linear-gradient(90deg,#7EC8E3,#4FACFE)}
+    .room-card[data-room="bedroom"]::before{background:linear-gradient(90deg,#C4A8D4,#9B8EC4)}
+    .room-card[data-room="living"]::before{background:linear-gradient(90deg,#D4B896,#C4A278)}
+    .room-card[data-room="laundry"]::before{background:linear-gradient(90deg,#82C4C8,#5BAAB2)}
+    .room-card[data-room="garden"]::before{background:linear-gradient(90deg,#90BF72,#6B8E23)}
+    .room-card[data-room="maint"]::before{background:linear-gradient(90deg,#C4A878,#A8885A)}
+    .room-card[data-room="other"]::before{background:linear-gradient(90deg,#B8A8C8,#9888B0)}
     .room-icon{font-size:36px;margin-bottom:8px;display:block}
     .room-name{font-size:13.5px;font-weight:700;color:var(--c-text);margin-bottom:3px;letter-spacing:-.01em}
     .room-count{font-size:11.5px;color:var(--c-text-dim);margin-bottom:0}
@@ -438,7 +458,7 @@
     .shop-count{font-size:12px;color:var(--c-text-dim)}
 
     /* ── POINTS BANNER ───────────────────────────────────────────── */
-    .points-banner{background:linear-gradient(135deg,#15803d 0%,#16a34a 40%,#d97706 100%);
+    .points-banner{background:linear-gradient(135deg,#556B1A 0%,#6B8E23 40%,#C2714F 100%);
       border-radius:var(--radius);padding:18px 24px;margin-bottom:22px;color:#fff;
       display:flex;align-items:center;justify-content:space-between;
       box-shadow:0 4px 20px rgba(22,163,74,.3)}
@@ -520,6 +540,20 @@
     .copt.wife:hover{background:var(--wife-light)}
     .copt.both{border-color:var(--both-color);color:var(--both-color)}
     .copt.both:hover{background:var(--both-light)}
+
+    /* ── TASK COMPLETION ANIMATION ─────────────────────────────── */
+    @keyframes taskDone{
+      0%{background:transparent}
+      20%{background:var(--ok-lt);transform:scale(1.01)}
+      100%{background:transparent;transform:scale(1)}
+    }
+    .task-completing{animation:taskDone .5s ease-out}
+    @keyframes checkPop{
+      0%{transform:scale(.5);opacity:0}
+      60%{transform:scale(1.3)}
+      100%{transform:scale(1);opacity:1}
+    }
+    .task-check.done{animation:checkPop .28s cubic-bezier(.16,1,.3,1)}
 
     /* ── TOAST ──────────────────────────────────────────────────── */
     .toast{position:fixed;right:18px;background:var(--c-text);color:var(--c-bg-card);
@@ -1126,9 +1160,23 @@ function renderSidebar(){
       ${n.id==='today'&&urgent>0?`<span class="nav-badge">${urgent}</span>`:''}
     </button>`).join('')}
   `;
+  const todayStr=today();
+  const myToday=S.history.filter(h=>h.completedAt===todayStr&&(h.completedBy==='me'||h.completedBy==='both')).length;
+  const wifeToday=S.history.filter(h=>h.completedAt===todayStr&&(h.completedBy==='wife'||h.completedBy==='both')).length;
+  const myLeads=myToday>wifeToday,wifeLeads=wifeToday>myToday;
   document.getElementById('memberChips').innerHTML=`
-    <div class="member-chip me"><div class="chip-av">${esc(S.settings.myName[0].toUpperCase())}</div>${esc(S.settings.myName)}</div>
-    <div class="member-chip wife"><div class="chip-av">${esc(S.settings.wifeName[0].toUpperCase())}</div>${esc(S.settings.wifeName)}</div>
+    <div class="avatar-bubble me${myLeads?' leading':''}">
+      <div class="avatar-inner">${esc(S.settings.myName[0].toUpperCase())}</div>
+      ${myLeads?'<div class="avatar-crown">👑</div>':''}
+      <div class="avatar-name">${esc(S.settings.myName)}</div>
+      <div class="avatar-score">${myToday} done</div>
+    </div>
+    <div class="avatar-bubble wife${wifeLeads?' leading':''}">
+      <div class="avatar-inner">${esc(S.settings.wifeName[0].toUpperCase())}</div>
+      ${wifeLeads?'<div class="avatar-crown">👑</div>':''}
+      <div class="avatar-name">${esc(S.settings.wifeName)}</div>
+      <div class="avatar-score">${wifeToday} done</div>
+    </div>
   `;
   const pill=document.getElementById('syncPill');
   const st={connected:{icon:'☁️',text:'Synced',cls:'connected'},connecting:{icon:'⟳',text:'Syncing…',cls:'connecting'},
@@ -1322,7 +1370,7 @@ function renderItem(t){
   const subs=t.subtasks||[];const subDone=subs.filter(s=>s.done).length;
   const expanded=S.expandedSubtasks_.has(t.id);
   return `
-    <div class="task-item" onclick="openEdit('${t.id}')">
+    <div class="task-item" data-task-id="${t.id}" onclick="openEdit('${t.id}')">
       <div class="task-check${done?' done':''}" onclick="event.stopPropagation();openComplete('${t.id}')"
            title="${done?'Undo completion':'Mark complete'}" role="checkbox" aria-checked="${done}">${done?'✓':''}</div>
       <div class="task-info">
@@ -1514,7 +1562,7 @@ function renderRooms(){
       const health=roomHealth(room.cats);
       const cls=health>=80?'good':health>=50?'warn':'bad';
       const statusText=health>=80?'Looking good':`${overdueCnt>0?overdueCnt+' overdue':''}${overdueCnt>0&&todayCnt>0?', ':''}${todayCnt>0?todayCnt+' due today':''}`.trim()||'Needs attention';
-      return `<div class="room-card" onclick="filterByRoom(${JSON.stringify(room.cats)})">
+      return `<div class="room-card" data-room="${room.id}" onclick="filterByRoom(${JSON.stringify(room.cats)})">
         <div class="room-icon">${room.icon}</div>
         <div class="room-name">${room.label}</div>
         <div class="room-count">${tasks.length} task${tasks.length!==1?'s':''}</div>
@@ -1596,40 +1644,45 @@ function renderWorkloadBar(){
   const myCnt=S.history.filter(h=>h.completedBy==='me').length;
   const wifeCnt=S.history.filter(h=>h.completedBy==='wife').length;
   const bothCnt=S.history.filter(h=>h.completedBy==='both').length;
-  const myT=myCnt+Math.floor(bothCnt/2);const wifeT=wifeCnt+Math.ceil(bothCnt/2);
+  const myT=myCnt+Math.floor(bothCnt/2),wifeT=wifeCnt+Math.ceil(bothCnt/2);
   const total=myT+wifeT;
-  if(total===0)return`<div style="font-size:12px;color:var(--c-text-dim);text-align:center;padding:20px">No completions yet</div>`;
-  const myPct=Math.round(myT/total*100);const wifePct=100-myPct;
-  return `
-    <div style="margin-bottom:6px">
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--c-text-muted);margin-bottom:4px">
-        <span>${esc(S.settings.myName)} ${myT} (${myPct}%)</span>
-        <span>${esc(S.settings.wifeName)} ${wifeT} (${wifePct}%)</span>
-      </div>
-      <div style="height:20px;border-radius:100px;overflow:hidden;display:flex">
-        <div style="width:${myPct}%;background:var(--me-color);transition:width .5s"></div>
-        <div style="flex:1;background:var(--wife-color)"></div>
-      </div>
-    </div>
-    <div class="chart-legend">
-      <div class="chart-leg-item"><div class="chart-leg-dot" style="background:var(--me-color)"></div>${esc(S.settings.myName)}</div>
-      <div class="chart-leg-item"><div class="chart-leg-dot" style="background:var(--wife-color)"></div>${esc(S.settings.wifeName)}</div>
-    </div>`;
+  if(!total)return`<div style="text-align:center;padding:24px;font-size:12px;color:var(--c-text-dim)">No completions yet</div>`;
+  const r=42,cx=65,cy=65,circ=2*Math.PI*r;
+  const myDash=circ*(myT/total);
+  const myPct=Math.round(myT/total*100);
+  return`<svg width="130" height="130" viewBox="0 0 130 130" style="display:block;margin:0 auto">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--wife-color)" stroke-width="18" opacity=".85"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--me-color)" stroke-width="18"
+      stroke-dasharray="${myDash.toFixed(1)} ${(circ-myDash).toFixed(1)}"
+      transform="rotate(-90 ${cx} ${cy})" opacity=".9"/>
+    <text x="${cx}" y="${cy-5}" text-anchor="middle" font-size="16" font-weight="700" fill="var(--c-text)">${myPct}%</text>
+    <text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="9" fill="var(--c-text-muted)">${esc(S.settings.myName)}</text>
+  </svg>
+  <div class="chart-legend" style="justify-content:center;margin-top:8px">
+    <div class="chart-leg-item"><div class="chart-leg-dot" style="background:var(--me-color)"></div>${esc(S.settings.myName)} ${myT}</div>
+    <div class="chart-leg-item"><div class="chart-leg-dot" style="background:var(--wife-color)"></div>${esc(S.settings.wifeName)} ${wifeT}</div>
+  </div>`;
 }
 function renderCategoryChart(){
-  const cats=catCompletions().slice(0,8);
-  if(cats.length===0)return`<div style="font-size:12px;color:var(--c-text-dim);text-align:center;padding:20px">No data yet</div>`;
-  const max=cats[0][1]||1;const w=240;const h=120;const bw=Math.floor(w/cats.length)-4;
-  const bars=cats.map(([cat,cnt],i)=>{
-    const bh=Math.max(4,Math.round((cnt/max)*(h-24)));
-    const x=i*(bw+4);const y=h-bh-18;
-    return `<g>
-      <rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="3" fill="var(--primary)" opacity=".8"/>
-      <text x="${x+bw/2}" y="${h-4}" text-anchor="middle" font-size="8" fill="currentColor" opacity=".6">${catIcon(cat)}</text>
-      <text x="${x+bw/2}" y="${y-3}" text-anchor="middle" font-size="8" fill="currentColor" opacity=".7">${cnt}</text>
-    </g>`;
-  }).join('');
-  return `<svg width="100%" viewBox="0 0 ${w} ${h}" style="color:var(--c-text)">${bars}</svg>`;
+  const active=S.tasks.filter(t=>t.active!==false);
+  const todayTasks=active.filter(t=>['today','overdue'].includes(taskStatus(t)));
+  const doneCnt=active.filter(t=>t.lastCompleted===today()).length;
+  const total=Math.max(todayTasks.length+doneCnt,1);
+  const r=42,cx=65,cy=65,circ=2*Math.PI*r;
+  const doneDash=circ*(doneCnt/total);
+  const pct=total?Math.round(doneCnt/total*100):0;
+  return`<svg width="130" height="130" viewBox="0 0 130 130" style="display:block;margin:0 auto">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--c-border)" stroke-width="18"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--ok)" stroke-width="18"
+      stroke-dasharray="${doneDash.toFixed(1)} ${(circ-doneDash).toFixed(1)}"
+      transform="rotate(-90 ${cx} ${cy})" stroke-linecap="round"/>
+    <text x="${cx}" y="${cy-5}" text-anchor="middle" font-size="18" font-weight="700" fill="var(--ok)">${pct}%</text>
+    <text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="9" fill="var(--c-text-muted)">done today</text>
+  </svg>
+  <div class="chart-legend" style="justify-content:center;margin-top:8px">
+    <div class="chart-leg-item"><div class="chart-leg-dot" style="background:var(--ok)"></div>Done ${doneCnt}</div>
+    <div class="chart-leg-item"><div class="chart-leg-dot" style="background:var(--c-border)"></div>Remaining ${todayTasks.length}</div>
+  </div>`;
 }
 function renderSparkline(){
   const buckets=computeWeeklyBuckets(8);
@@ -1922,7 +1975,9 @@ function doComplete(by){
   const nextDue=t.frequency==='asNeeded'?t.nextDue:advanceToFuture(t.frequency,t.nextDue,t.intervalDays);
   S.tasks[i]={...t,lastCompleted:today(),completedBy:by,nextDue,streak};
   S.history.push({id:uid(),taskId:id,completedBy:by,completedAt:today()});
-  save();closeModal('completeModal');toast(`✅ "${t.title}" completed!`);renderAll();
+  save();closeModal('completeModal');toast(`✅ "${t.title}" completed!`);
+  requestAnimationFrame(()=>{const el=document.querySelector(`[data-task-id="${id}"]`);if(el){el.classList.add('task-completing');el.addEventListener('animationend',()=>el.classList.remove('task-completing'),{once:true});}});
+  renderAll();
 }
 function undoComplete(id){
   const i=S.tasks.findIndex(t=>t.id===id);if(i<0)return;
