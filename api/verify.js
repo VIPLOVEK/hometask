@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
 function verifyToken(token, secret) {
   if (!token || !token.includes('.')) return null;
@@ -18,7 +18,12 @@ function verifyToken(token, secret) {
 }
 
 export default function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin;
+  const allowed = process.env.ALLOWED_ORIGIN || '';
+  if (allowed && origin === allowed) {
+    res.setHeader('Access-Control-Allow-Origin', allowed);
+  }
+  res.setHeader('Vary', 'Origin');
 
   const token = req.query.token || req.headers['x-auth-token'];
   if (!token) return res.status(401).json({ error: 'No token provided' });

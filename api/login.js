@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
 function createToken(user, secret) {
   const payload = Buffer.from(JSON.stringify({
@@ -11,9 +11,14 @@ function createToken(user, secret) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin;
+  const allowed = process.env.ALLOWED_ORIGIN || '';
+  if (allowed && origin === allowed) {
+    res.setHeader('Access-Control-Allow-Origin', allowed);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Vary', 'Origin');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
@@ -45,6 +50,7 @@ export default async function handler(req, res) {
   // Constant-time comparison to avoid timing attacks
   const match = users.find(u =>
     u.name.toLowerCase() === username.toLowerCase() &&
+    u.pass.length === password.length &&
     crypto.timingSafeEqual(Buffer.from(u.pass), Buffer.from(password))
   );
 

@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#6B8E23">
+  <meta name="theme-color" content="#6366F1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>HomeTask — Home Task Manager</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366F1'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-size='58'>🏡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Anti-flash: set theme before first paint -->
@@ -17,82 +19,82 @@
       document.documentElement.setAttribute('data-theme','dark');}catch(e){}
   </script>
   <style>
-    /* ── TOKENS: LIGHT — Modern Botanical ────────────────────── */
+    /* ── TOKENS: LIGHT ────────────────────────────────────────── */
     :root {
-      --c-bg:          #FAFAF8;  /* Alabaster */
+      --c-bg:          #F8FAFC;
       --c-bg-card:     #FFFFFF;
       --c-bg-input:    #FFFFFF;
-      --c-bg-subtle:   #F2EFE8;
-      --c-border:      #E8E3DA;
-      --c-border-in:   #D6CFC3;
-      --c-text:        #2C2416;
-      --c-text-muted:  #7A6E5E;
-      --c-text-dim:    #B0A492;
+      --c-bg-subtle:   #F1F5F9;
+      --c-border:      #E2E8F0;
+      --c-border-in:   #CBD5E1;
+      --c-text:        #0F172A;
+      --c-text-muted:  #64748B;
+      --c-text-dim:    #94A3B8;
 
-      /* Olive Drab brand */
-      --primary:       #6B8E23;
-      --primary-dk:    #556B1A;
-      --primary-lt:    #EFF4DC;
-      --primary-tx:    #4A6118;
+      /* Indigo brand */
+      --primary:       #6366F1;
+      --primary-dk:    #4F46E5;
+      --primary-lt:    #EEF2FF;
+      --primary-tx:    #4338CA;
 
-      /* Warm people colors */
-      --me-color:      #5B6FA6;
-      --me-light:      #EAEEf8;
-      --wife-color:    #C2714F;  /* Terracotta */
-      --wife-light:    #FAF0EB;
-      --both-color:    #8B7355;
-      --both-light:    #F5EFE5;
+      /* People colors */
+      --me-color:      #0EA5E9;
+      --me-light:      #E0F2FE;
+      --wife-color:    #F43F5E;
+      --wife-light:    #FFE4E6;
+      --both-color:    #8B5CF6;
+      --both-light:    #EDE9FE;
 
       /* Status */
-      --ok:            #6B8E23;
-      --ok-lt:         #EFF4DC;
-      --danger:        #E67E22;  /* Carrot Orange — overdue */
-      --danger-lt:     #FDF0E6;
-      --warn:          #B8860B;
-      --warn-lt:       #FBF5E0;
-      --info:          #5B6FA6;
-      --info-lt:       #EAEEf8;
+      --ok:            #22C55E;
+      --ok-lt:         #DCFCE7;
+      --danger:        #EF4444;
+      --danger-lt:     #FEE2E2;
+      --warn:          #F59E0B;
+      --warn-lt:       #FEF3C7;
+      --info:          #0EA5E9;
+      --info-lt:       #E0F2FE;
 
-      /* Soft neumorphism-lite shadows */
-      --shadow-sm:     0 2px 8px rgba(44,36,22,.06),0 1px 2px rgba(44,36,22,.04);
-      --shadow-md:     0 8px 28px rgba(44,36,22,.09),0 2px 6px rgba(44,36,22,.05);
-      --shadow-lg:     0 20px 50px rgba(44,36,22,.11),0 6px 14px rgba(44,36,22,.06);
+      /* Shadows */
+      --shadow-sm:     0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+      --shadow-md:     0 4px 16px rgba(15,23,42,.08),0 2px 4px rgba(15,23,42,.04);
+      --shadow-lg:     0 16px 40px rgba(15,23,42,.10),0 4px 8px rgba(15,23,42,.05);
 
-      --sidebar-w:     272px;
+      --sidebar-w:     256px;
       --nav-h:         64px;
-      --radius:        20px;
-      --radius-sm:     14px;
-      --radius-lg:     28px;
-      --t:             .18s;
+      --radius:        14px;
+      --radius-sm:     9px;
+      --radius-lg:     20px;
+      --t:             .15s;
     }
 
-    /* ── TOKENS: DARK — Warm Dark ──────────────────────────────── */
+    /* ── TOKENS: DARK ──────────────────────────────────────────── */
     [data-theme="dark"] {
-      --c-bg:          #1A1510;
-      --c-bg-card:     #231E18;
-      --c-bg-input:    #231E18;
-      --c-bg-subtle:   #2D2720;
-      --c-border:      #3D3628;
-      --c-border-in:   #4E4538;
-      --c-text:        #F5F0E8;
-      --c-text-muted:  #B8AA98;
-      --c-text-dim:    #7A6E60;
+      --c-bg:          #0B0F1A;
+      --c-bg-card:     #131929;
+      --c-bg-input:    #1A2236;
+      --c-bg-subtle:   #1A2236;
+      --c-border:      #1E2D45;
+      --c-border-in:   #283A55;
+      --c-text:        #F1F5F9;
+      --c-text-muted:  #94A3B8;
+      --c-text-dim:    #475569;
 
-      --primary-lt:    rgba(107,142,35,.15);
-      --primary-tx:    #A8C45A;
+      --primary-lt:    rgba(99,102,241,.18);
+      --primary-tx:    #A5B4FC;
 
-      --me-light:      rgba(91,111,166,.18);
-      --wife-light:    rgba(194,113,79,.16);
-      --both-light:    rgba(139,115,85,.16);
+      --me-light:      rgba(14,165,233,.15);
+      --wife-light:    rgba(244,63,94,.14);
+      --both-light:    rgba(139,92,246,.15);
 
-      --ok-lt:         rgba(107,142,35,.15);
-      --danger-lt:     rgba(230,126,34,.15);
-      --warn-lt:       rgba(184,134,11,.14);
-      --info-lt:       rgba(91,111,166,.16);
+      --ok-lt:         rgba(34,197,94,.14);
+      --danger-lt:     rgba(239,68,68,.14);
+      --warn-lt:       rgba(245,158,11,.13);
+      --info-lt:       rgba(14,165,233,.15);
 
-      --shadow-sm:     0 2px 8px rgba(0,0,0,.45);
-      --shadow-md:     0 8px 24px rgba(0,0,0,.55);
-      --shadow-lg:     0 20px 50px rgba(0,0,0,.65);
+      --shadow-sm:     0 1px 3px rgba(0,0,0,.5);
+      --shadow-md:     0 4px 16px rgba(0,0,0,.6);
+      --shadow-lg:     0 16px 40px rgba(0,0,0,.7);
     }
 
     /* ── RESET ─────────────────────────────────────────────────── */
@@ -101,7 +103,7 @@
     body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
       background:var(--c-bg);color:var(--c-text);min-height:100vh;
       transition:background var(--t),color var(--t);line-height:1.5}
-    h1,h2,h3,.topbar-title,.card-title,.set-title,.modal-ttl,.room-name,.stat-label,.section-hdr-text{
+    h1,h2,h3,.topbar-title,.modal-ttl,.room-name,.set-title{
       font-family:'Lora',Georgia,'Times New Roman',serif}
     button{font-family:inherit;cursor:pointer}
     input,select,textarea{font-family:inherit}
@@ -112,39 +114,38 @@
     /* ── LAYOUT SHELL ──────────────────────────────────────────── */
     .app{display:flex;min-height:100vh}
 
-    /* Sidebar — glassmorphism */
+    /* Sidebar */
     .sidebar{width:var(--sidebar-w);
-      background:rgba(250,250,248,.78);
-      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-      border-right:1px solid rgba(107,142,35,.18);
+      background:var(--c-bg-card);
+      border-right:1px solid var(--c-border);
       display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;
       overflow-y:auto;z-index:100;transition:background var(--t)}
-    [data-theme="dark"] .sidebar{background:rgba(26,21,16,.82);border-right:1px solid rgba(107,142,35,.12)}
-    .sidebar-logo{padding:22px 18px 18px;border-bottom:1px solid var(--c-border)}
+    [data-theme="dark"] .sidebar{background:var(--c-bg-card);border-right:1px solid var(--c-border)}
+    .sidebar-logo{padding:20px 16px 16px;border-bottom:1px solid var(--c-border)}
     .logo-mark{display:flex;align-items:center;gap:9px;margin-bottom:3px}
-    .logo-icon-wrap{width:36px;height:36px;border-radius:10px;
-      background:linear-gradient(135deg,var(--primary),#C2714F);
-      display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
-      box-shadow:0 2px 8px rgba(107,142,35,.35)}
-    .logo-text{font-size:18px;font-weight:800;letter-spacing:-.3px;
-      background:linear-gradient(135deg,var(--primary),#C2714F);
+    .logo-icon-wrap{width:34px;height:34px;border-radius:9px;
+      background:linear-gradient(135deg,var(--primary),var(--wife-color));
+      display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;
+      box-shadow:0 2px 8px rgba(99,102,241,.35)}
+    .logo-text{font-size:17px;font-weight:800;letter-spacing:-.3px;
+      background:linear-gradient(135deg,var(--primary),var(--wife-color));
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
       font-family:'Lora',Georgia,serif}
     .logo-sub{font-size:11px;color:var(--c-text-dim);margin-top:1px;letter-spacing:.01em}
-    .sidebar-nav{padding:12px 8px;flex:1}
+    .sidebar-nav{padding:10px 8px;flex:1}
     .nav-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
       color:var(--c-text-dim);padding:10px 10px 5px}
-    .nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:100px;
+    .nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;
       font-size:13px;font-weight:500;color:var(--c-text-muted);transition:all var(--t);
-      margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
+      margin-bottom:1px;border:none;background:none;width:100%;text-align:left}
     .nav-item:hover{background:var(--c-bg-subtle);color:var(--c-text)}
-    .nav-item.active{background:var(--primary);color:#fff;font-weight:600;
-      box-shadow:0 2px 8px rgba(107,142,35,.35)}
+    .nav-item.active{background:var(--primary-lt);color:var(--primary-tx);font-weight:600;
+      box-shadow:none}
     .nav-item.active .nav-icon{filter:none}
     .nav-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
     .nav-badge{margin-left:auto;background:var(--danger);color:#fff;font-size:9.5px;
       font-weight:700;padding:2px 6px;border-radius:100px;min-width:18px;text-align:center}
-    .nav-item.active .nav-badge{background:#fff;color:var(--danger)}
+    .nav-item.active .nav-badge{background:var(--danger);color:#fff}
     .sidebar-bottom{padding:12px 14px;border-top:1px solid var(--c-border)}
     .member-chips{display:flex;gap:8px;margin-bottom:12px}
     .avatar-bubble{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
@@ -153,8 +154,8 @@
     .avatar-inner{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;
       justify-content:center;font-size:17px;font-weight:800;color:#fff;
       transition:box-shadow var(--t);font-family:'Inter',sans-serif}
-    .avatar-bubble.me .avatar-inner{background:linear-gradient(135deg,var(--me-color),#7B8FC0)}
-    .avatar-bubble.wife .avatar-inner{background:linear-gradient(135deg,var(--wife-color),#D4895C)}
+    .avatar-bubble.me .avatar-inner{background:linear-gradient(135deg,var(--me-color),#38BDF8)}
+    .avatar-bubble.wife .avatar-inner{background:linear-gradient(135deg,var(--wife-color),#FB7185)}
     .avatar-bubble.leading .avatar-inner{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--primary)}
     .avatar-bubble.leading{background:var(--primary-lt)}
     .avatar-name{font-size:11px;font-weight:600;color:var(--c-text)}
@@ -184,17 +185,17 @@
     .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
 
     /* Topbar */
-    .topbar{background:rgba(250,250,248,.92);backdrop-filter:blur(12px);
+    .topbar{background:rgba(248,250,252,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
       border-bottom:1px solid var(--c-border);
-      padding:14px 26px;display:flex;align-items:center;justify-content:space-between;
+      padding:12px 24px;display:flex;align-items:center;justify-content:space-between;
       position:sticky;top:0;z-index:50;transition:background var(--t)}
-    [data-theme="dark"] .topbar{background:rgba(26,21,16,.92)}
+    [data-theme="dark"] .topbar{background:rgba(11,15,26,.96)}
     .topbar-title{font-size:17px;font-weight:700;color:var(--c-text);letter-spacing:-.2px}
     .topbar-right{display:flex;align-items:center;gap:9px}
     .search-box{display:flex;align-items:center;gap:7px;background:var(--c-bg-card);
       border-radius:100px;padding:7px 14px;border:1.5px solid var(--c-border);
       transition:all var(--t);box-shadow:var(--shadow-sm)}
-    .search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(22,163,74,.12)}
+    .search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.12)}
     .search-box input{border:none;background:none;outline:none;font-size:13px;
       color:var(--c-text);width:160px}
     .search-box input::placeholder{color:var(--c-text-dim)}
@@ -202,9 +203,9 @@
 
     /* Bottom nav */
     .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);
-      background:rgba(250,250,248,.95);backdrop-filter:blur(12px);
+      background:rgba(248,250,252,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
       border-top:1px solid var(--c-border);z-index:100;padding:0 8px}
-    [data-theme="dark"] .bottom-nav{background:rgba(26,21,16,.95)}
+    [data-theme="dark"] .bottom-nav{background:rgba(11,15,26,.97)}
     .bnav-inner{display:flex;height:100%}
     .bnav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
       gap:3px;border:none;background:none;color:var(--c-text-dim);font-size:10px;
@@ -217,8 +218,8 @@
     /* ── BUTTONS ────────────────────────────────────────────────── */
     .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:100px;
       font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all var(--t);font-family:inherit;letter-spacing:-.01em}
-    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(107,142,35,.35)}
-    .btn-primary:hover{background:var(--primary-dk);box-shadow:0 4px 14px rgba(107,142,35,.4);transform:translateY(-1px)}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 1px 6px rgba(99,102,241,.3)}
+    .btn-primary:hover{background:var(--primary-dk);box-shadow:0 4px 14px rgba(99,102,241,.4);transform:translateY(-1px)}
     .btn-primary:active{transform:translateY(0)}
     .btn-secondary{background:var(--c-bg-card);color:var(--c-text-muted);border:1.5px solid var(--c-border);box-shadow:var(--shadow-sm)}
     .btn-secondary:hover{border-color:var(--c-border-in);color:var(--c-text);background:var(--c-bg-subtle)}
@@ -246,7 +247,7 @@
     /* Progress bar */
     .prog-wrap{background:var(--c-bg-subtle);border-radius:100px;height:8px;overflow:hidden}
     .prog-bar{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--me-color),var(--wife-color));transition:width .6s ease}
-    .prog-bar-ok{background:linear-gradient(90deg,var(--primary),#d97706)}
+    .prog-bar-ok{background:linear-gradient(90deg,var(--primary),var(--ok))}
 
     /* Day progress */
     .day-prog{background:var(--c-bg-card);border-radius:var(--radius);padding:16px 20px;
@@ -272,7 +273,7 @@
       flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;
       font-weight:700;transition:all var(--t);cursor:pointer;margin-top:2px;color:#fff}
     .task-check:hover{border-color:var(--ok);background:var(--ok-lt)}
-    .task-check.done{border-color:var(--ok);background:var(--ok);box-shadow:0 1px 4px rgba(22,163,74,.4)}
+    .task-check.done{border-color:var(--ok);background:var(--ok);box-shadow:0 1px 4px rgba(34,197,94,.4)}
     .task-info{flex:1;min-width:0}
     .task-title{font-size:13.5px;font-weight:500;color:var(--c-text);margin-bottom:5px;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}
@@ -295,6 +296,8 @@
     .tag-overdue{background:var(--danger-lt);color:var(--danger)}
     .tag-today{background:var(--warn-lt);color:var(--warn)}
     .tag-soon{background:var(--ok-lt);color:var(--ok)}
+    .tag-high{background:#FEE2E2;color:#DC2626}
+    [data-theme="dark"] .tag-high{background:rgba(239,68,68,.18);color:#FCA5A5}
     .tag-me{background:var(--me-light);color:var(--me-color)}
     .tag-wife{background:var(--wife-light);color:var(--wife-color)}
     .tag-both{background:var(--both-light);color:var(--both-color)}
@@ -310,7 +313,7 @@
       background:var(--c-bg-card);font-size:12px;font-weight:600;color:var(--c-text-muted);
       cursor:pointer;transition:all var(--t);font-family:inherit}
     .filter-btn:hover{border-color:var(--primary);color:var(--primary)}
-    .filter-btn.active{border-color:var(--primary);background:var(--primary);color:#fff;box-shadow:0 1px 4px rgba(22,163,74,.3)}
+    .filter-btn.active{border-color:var(--primary);background:var(--primary);color:#fff;box-shadow:0 1px 4px rgba(99,102,241,.3)}
     .filter-sel{padding:5px 10px;border-radius:100px;border:1.5px solid var(--c-border);
       font-size:12px;font-weight:600;color:var(--c-text-muted);background:var(--c-bg-card);
       cursor:pointer;outline:none;font-family:inherit;transition:all var(--t)}
@@ -334,6 +337,14 @@
     .week-task:hover{background:var(--primary-lt);color:var(--primary)}
     .week-more{padding:4px 7px;font-size:11px;color:var(--c-text-dim);font-weight:600}
     .week-empty{padding:10px 8px;font-size:11px;color:var(--c-text-dim);text-align:center}
+    .week-task-done{text-decoration:line-through;opacity:.55;background:var(--ok-lt)!important;color:var(--ok)!important}
+    .today-greeting{font-size:21px;font-weight:700;font-family:'Lora',Georgia,serif;color:var(--c-text);margin-bottom:18px;letter-spacing:-.01em}
+    .all-done-banner{background:linear-gradient(135deg,#4338CA,#6366F1,#22C55E);border-radius:var(--radius);padding:16px 22px;margin-bottom:20px;color:#fff;display:flex;align-items:center;gap:14px;box-shadow:0 4px 20px rgba(99,102,241,.35)}
+    .all-done-icon{font-size:34px;flex-shrink:0}
+    .all-done-text{flex:1}
+    .all-done-title{font-size:15px;font-weight:700;font-family:'Lora',Georgia,serif;margin-bottom:2px}
+    .all-done-sub{font-size:12px;opacity:.88}
+    .est-time-note{font-size:11.5px;color:var(--c-text-dim);margin-top:4px}
 
     /* ── HISTORY ────────────────────────────────────────────────── */
     .hist-item{display:flex;align-items:center;gap:10px;padding:10px 0;
@@ -401,7 +412,7 @@
       display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 
     /* ── ROOMS VIEW ─────────────────────────────────────────────── */
-    .rooms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .room-card{background:var(--c-bg-card);border-radius:var(--radius);padding:20px 18px;
       border:1px solid var(--c-border);cursor:pointer;transition:all var(--t);
       box-shadow:var(--shadow-sm);text-align:center;position:relative;overflow:hidden}
@@ -412,9 +423,10 @@
     .room-card[data-room="bedroom"]::before{background:linear-gradient(90deg,#C4A8D4,#9B8EC4)}
     .room-card[data-room="living"]::before{background:linear-gradient(90deg,#D4B896,#C4A278)}
     .room-card[data-room="laundry"]::before{background:linear-gradient(90deg,#82C4C8,#5BAAB2)}
-    .room-card[data-room="garden"]::before{background:linear-gradient(90deg,#90BF72,#6B8E23)}
+    .room-card[data-room="garden"]::before{background:linear-gradient(90deg,#4ADE80,#22C55E)}
     .room-card[data-room="maint"]::before{background:linear-gradient(90deg,#C4A878,#A8885A)}
     .room-card[data-room="other"]::before{background:linear-gradient(90deg,#B8A8C8,#9888B0)}
+    .room-card[data-room="car"]::before{background:linear-gradient(90deg,#60A5FA,#3B82F6)}
     .room-icon{font-size:36px;margin-bottom:8px;display:block}
     .room-name{font-size:13.5px;font-weight:700;color:var(--c-text);margin-bottom:3px;letter-spacing:-.01em}
     .room-count{font-size:11.5px;color:var(--c-text-dim);margin-bottom:0}
@@ -458,10 +470,10 @@
     .shop-count{font-size:12px;color:var(--c-text-dim)}
 
     /* ── POINTS BANNER ───────────────────────────────────────────── */
-    .points-banner{background:linear-gradient(135deg,#556B1A 0%,#6B8E23 40%,#C2714F 100%);
+    .points-banner{background:linear-gradient(135deg,#4338CA 0%,#6366F1 50%,#F43F5E 100%);
       border-radius:var(--radius);padding:18px 24px;margin-bottom:22px;color:#fff;
       display:flex;align-items:center;justify-content:space-between;
-      box-shadow:0 4px 20px rgba(22,163,74,.3)}
+      box-shadow:0 4px 20px rgba(99,102,241,.35)}
     .points-person{text-align:center}
     .points-num{font-size:32px;font-weight:900;line-height:1;letter-spacing:-.03em}
     .points-lbl{font-size:11px;opacity:.85;margin-top:3px;font-weight:500}
@@ -503,7 +515,7 @@
     .finput{width:100%;padding:10px 13px;border:1.5px solid var(--c-border-in);
       border-radius:var(--radius-sm);font-size:13.5px;color:var(--c-text);
       background:var(--c-bg-input);outline:none;transition:all var(--t);font-family:inherit}
-    .finput:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(22,163,74,.1)}
+    .finput:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.12)}
     .finput::placeholder{color:var(--c-text-dim)}
     .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
     .ftarea{resize:vertical;min-height:70px}
@@ -589,10 +601,10 @@
 
     /* ── CLAIM SECTION ──────────────────────────────────────────── */
     .claim-section{background:var(--c-bg-card);border-radius:var(--radius);
-      border:1px solid var(--primary-lt);box-shadow:var(--shadow-sm);margin-bottom:18px;overflow:hidden}
+      border:1px solid var(--c-border);box-shadow:var(--shadow-sm);margin-bottom:18px;overflow:hidden}
     .claim-hdr{padding:11px 16px;background:var(--primary-lt);display:flex;
       align-items:center;justify-content:space-between}
-    .claim-hdr-title{font-size:13px;font-weight:700;color:var(--primary)}
+    .claim-hdr-title{font-size:13px;font-weight:700;color:var(--primary-tx)}
     .claim-item{display:flex;align-items:center;gap:10px;padding:10px 16px;
       border-bottom:1px solid var(--c-border)}
     .claim-item:last-child{border-bottom:none}
@@ -634,6 +646,9 @@
     }
     @media(max-width:1100px){
       .stats-grid{grid-template-columns:1fr 1fr}
+      .rooms-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:860px){
       .rooms-grid{grid-template-columns:repeat(2,1fr)}
     }
   </style>
@@ -668,7 +683,7 @@
       <div class="topbar-right">
         <div class="search-box">
           <span aria-hidden="true">🔍</span>
-          <input type="search" id="searchInput" placeholder="Search tasks…"
+          <input type="search" id="searchInput" placeholder="Search tasks… ( / )"
                  aria-label="Search tasks" oninput="handleSearch(this.value)">
         </div>
         <button class="btn btn-primary" onclick="openCreate()">+ Add Task</button>
@@ -702,16 +717,18 @@
         <div class="fg">
           <label class="flabel" for="tCat">Category</label>
           <select class="finput" id="tCat">
-            <option value="Cleaning">🧹 Cleaning</option>
             <option value="Kitchen">🍳 Kitchen</option>
-            <option value="Laundry">👕 Laundry</option>
             <option value="Bathroom">🚿 Bathroom</option>
             <option value="Bedroom">🛏 Bedroom</option>
-            <option value="Garden">🌱 Garden</option>
+            <option value="Living Room">🛋️ Living Room</option>
+            <option value="Cleaning">🧹 Cleaning</option>
+            <option value="Laundry">👕 Laundry</option>
+            <option value="Garden">🌿 Garden</option>
             <option value="Maintenance">🔧 Maintenance</option>
+            <option value="Car">🚗 Car</option>
             <option value="Shopping">🛒 Shopping</option>
-            <option value="Pets">🐾 Pets</option>
             <option value="Admin">📋 Admin</option>
+            <option value="Pets">🐾 Pets</option>
             <option value="Other">📌 Other</option>
           </select>
         </div>
@@ -904,76 +921,172 @@ function load(){
 // ─── DEFAULT TASKS ────────────────────────────────────────────────────────────
 function defaultTasks(){
   const t=[];let n=1;
-  const add=(title,cat,freq,priority='medium',assignedTo='unassigned',notes='')=>
-    t.push({id:String(n++),title,category:cat,frequency:freq,priority,assignedTo,notes,
-      nextDue:fmtDate(new Date()),lastCompleted:null,completedBy:null,streak:0,duration:null,active:true,createdAt:fmtDate(new Date())});
-  // DAILY
-  add('Make the beds','Bedroom','daily','medium');
-  add('Wash dishes / load dishwasher','Kitchen','daily','high');
-  add('Wipe kitchen counters','Kitchen','daily','medium');
-  add('Sweep kitchen floor','Kitchen','daily','low');
-  add('Empty bin if full','Cleaning','daily','medium');
-  add('Feed pets','Pets','daily','high');
-  add('Wipe dining table after meals','Kitchen','daily','low');
-  // WEEKLY
-  add('Vacuum all rooms','Cleaning','weekly','high');
-  add('Mop floors','Cleaning','weekly','medium');
-  add('Clean toilet, sink & shower','Bathroom','weekly','high');
-  add('Change bed sheets','Bedroom','weekly','high');
-  add('Do laundry (wash & fold)','Laundry','weekly','high');
-  add('Clean mirrors & glass surfaces','Cleaning','weekly','low');
-  add('Wipe down kitchen appliances','Kitchen','weekly','low');
-  add('Water indoor plants','Garden','weekly','medium');
-  add('Grocery shopping','Shopping','weekly','high');
-  add('Take out recycling','Cleaning','weekly','medium');
-  add('Meal prep','Kitchen','weekly','medium');
-  add('Clean stovetop & hob','Kitchen','weekly','medium');
-  add('Wipe bathroom sink & faucets','Bathroom','weekly','medium');
-  add('Tidy living room','Cleaning','weekly','medium');
-  // BI-WEEKLY
-  add('Deep clean refrigerator','Kitchen','biweekly','medium');
-  add('Clean microwave inside','Kitchen','biweekly','medium');
-  add('Wipe kitchen cabinet fronts','Kitchen','biweekly','low');
-  add('Wash bathroom rugs & mats','Bathroom','biweekly','low');
-  add('Dust shelves & furniture','Cleaning','biweekly','medium');
-  // MONTHLY
-  add('Clean oven','Kitchen','monthly','medium');
-  add('Dust ceiling fans & light fittings','Cleaning','monthly','medium');
-  add('Clean windows — interior','Cleaning','monthly','low');
-  add('Check & replace air filters','Maintenance','monthly','high');
-  add('Water outdoor plants','Garden','monthly','medium');
-  add('Organise pantry','Kitchen','monthly','low');
-  add('Clean washing machine drum','Laundry','monthly','medium');
-  add('Clean dryer lint trap (deep)','Laundry','monthly','high');
-  add('Deep clean bathroom tiles & grout','Bathroom','monthly','medium');
-  add('Organise junk drawer','Admin','monthly','low');
-  add('Test smoke detectors','Maintenance','monthly','high');
-  add('Clean dishwasher filter','Kitchen','monthly','medium');
-  add('Wipe light switches & door handles','Cleaning','monthly','low');
-  add('Clean out car interior','Other','monthly','low');
-  // QUARTERLY
-  add('Clean gutters','Maintenance','quarterly','high');
-  add('Rotate mattress','Bedroom','quarterly','medium');
-  add('Clean behind large appliances','Cleaning','quarterly','medium');
-  add('Organise garage / storage','Maintenance','quarterly','low');
-  add('Clean windows — exterior','Cleaning','quarterly','medium');
-  add('Descale kettle & coffee maker','Kitchen','quarterly','medium');
-  add('Trim & prune outdoor plants','Garden','quarterly','medium');
-  add('Check tyre pressure & car fluids','Maintenance','quarterly','medium');
-  // YEARLY
-  add('Deep clean carpets & rugs','Cleaning','yearly','medium');
-  add('Check roof condition','Maintenance','yearly','high');
-  add('Service HVAC / boiler','Maintenance','yearly','high');
-  add('Flush water heater','Maintenance','yearly','high');
-  add('Re-caulk bathroom & kitchen','Maintenance','yearly','medium');
-  add('Replace smoke & CO detector batteries','Maintenance','yearly','high');
-  add('Pest inspection','Maintenance','yearly','medium');
-  add('Organise important documents','Admin','yearly','medium');
-  add('Service lawn mower','Garden','yearly','medium');
-  add('Wash curtains & blinds','Cleaning','yearly','low');
-  add('Check fire extinguisher','Maintenance','yearly','high');
-  add('Replenish medicine cabinet','Admin','yearly','medium');
-  add('Deep clean freezer','Kitchen','yearly','medium');
+  // Stagger initial due dates so not everything lands on day 1.
+  // Daily tasks start today; longer-cadence tasks are spread across their window.
+  const freqWindow={daily:1,weekly:7,biweekly:14,monthly:30,quarterly:90,annual:365};
+  const add=(title,cat,freq,priority='medium',assignedTo='unassigned',notes='',duration=null)=>{
+    const win=freqWindow[freq]||30;
+    // use task index to spread evenly across the window (daily always = 0)
+    const offset=win===1?0:Math.floor(((n-1)%win));
+    const due=new Date();due.setDate(due.getDate()+offset);
+    t.push({id:String(n++),title,category:cat,frequency:freq,priority,assignedTo,notes,duration,
+      nextDue:fmtDate(due),lastCompleted:null,completedBy:null,streak:0,active:true,createdAt:fmtDate(new Date())});
+  };
+
+  // ── KITCHEN ────────────────────────────────────────────────────────────────
+  add('Load & run dishwasher','Kitchen','daily','high','unassigned','',10);
+  add('Wipe down countertops & splashback','Kitchen','daily','high','unassigned','',5);
+  add('Clean kitchen sink & faucet','Kitchen','daily','medium','unassigned','',5);
+  add('Wipe dining table after meals','Kitchen','daily','low','unassigned','',3);
+  add('Sweep kitchen floor','Kitchen','daily','medium','unassigned','',5);
+  add('Empty compost / food bin','Kitchen','daily','medium','unassigned','',2);
+  add('Mop kitchen floor','Kitchen','weekly','medium','unassigned','',15);
+  add('Clean stovetop, burners & grates','Kitchen','weekly','high','unassigned','',15);
+  add('Wipe down all appliance exteriors','Kitchen','weekly','low','unassigned','',10);
+  add('Clean microwave inside & out','Kitchen','weekly','medium','unassigned','',10);
+  add('Wipe cabinet fronts & handles','Kitchen','weekly','low','unassigned','',10);
+  add('Scrub kitchen sink with cleaner','Kitchen','weekly','medium','unassigned','',5);
+  add('Check fridge & discard expired items','Kitchen','weekly','medium','unassigned','',10);
+  add('Empty and clean out toaster','Kitchen','weekly','low','unassigned','',5);
+  add('Deep clean refrigerator interior','Kitchen','biweekly','medium','unassigned','Remove all items, wipe shelves & drawers',25);
+  add('Clean oven interior','Kitchen','biweekly','medium','unassigned','Use oven cleaner if heavily soiled',30);
+  add('Descale coffee maker / kettle','Kitchen','biweekly','low','unassigned','Run descaling cycle or use white vinegar',10);
+  add('Run dishwasher cleaning cycle & clean filter','Kitchen','monthly','medium','unassigned','',20);
+  add('Clean range hood & degrease filters','Kitchen','monthly','medium','unassigned','Soak metal filters in hot soapy water',20);
+  add('Sanitize garbage disposal','Kitchen','monthly','low','unassigned','Ice cubes + salt, then baking soda & vinegar flush',5);
+  add('Organise pantry & check expiry dates','Kitchen','monthly','low','unassigned','',30);
+  add('Clean behind & under fridge and oven','Kitchen','quarterly','medium','unassigned','Vacuum dust from condenser coils at back of fridge',40);
+  add('Deep clean all cabinet interiors','Kitchen','quarterly','low','unassigned','',60);
+  add('Replace refrigerator water filter','Kitchen','quarterly','high','unassigned','Check filter model in manual before ordering',5);
+  add('Deep clean and defrost freezer','Kitchen','yearly','medium','unassigned','Unplug, remove all items, defrost fully and wipe clean',60);
+
+  // ── BATHROOM ──────────────────────────────────────────────────────────────
+  add('Wipe bathroom sink & faucet','Bathroom','daily','medium','unassigned','',3);
+  add('Squeegee shower walls & door after use','Bathroom','daily','low','unassigned','Prevents mould and limescale buildup',2);
+  add('Scrub toilet — bowl, seat, lid & base','Bathroom','weekly','high','unassigned','',10);
+  add('Scrub shower walls, door & tray','Bathroom','weekly','high','unassigned','',15);
+  add('Clean bath / tub','Bathroom','weekly','medium','unassigned','',15);
+  add('Clean bathroom vanity & countertop','Bathroom','weekly','high','unassigned','',10);
+  add('Wipe bathroom mirror','Bathroom','weekly','low','unassigned','',3);
+  add('Mop bathroom floor','Bathroom','weekly','medium','unassigned','',10);
+  add('Replace hand & bath towels','Bathroom','weekly','medium','unassigned','',5);
+  add('Empty bathroom bin','Bathroom','weekly','medium','unassigned','',3);
+  add('Scrub tile grout','Bathroom','biweekly','medium','unassigned','Use grout cleaner or baking soda paste',20);
+  add('Wipe down extractor fan cover','Bathroom','biweekly','low','unassigned','',10);
+  add('Descale showerhead','Bathroom','monthly','medium','unassigned','Soak in white vinegar for 30 mins or use descaler bag',15);
+  add('Wash bath mat & shower curtain','Bathroom','monthly','medium','unassigned','',15);
+  add('Clean behind toilet','Bathroom','monthly','medium','unassigned','',10);
+  add('Restock toiletries & medicine cabinet','Bathroom','monthly','medium','unassigned','',15);
+  add('Deep clean extractor fan (internal blades)','Bathroom','quarterly','medium','unassigned','Unscrew cover, clean fan blades with a brush',20);
+  add('Check & safely dispose of expired medications','Bathroom','quarterly','high','unassigned','Return expired meds to a pharmacy for safe disposal',15);
+
+  // ── BEDROOM ───────────────────────────────────────────────────────────────
+  add('Make beds','Bedroom','daily','medium','unassigned','',5);
+  add('Change bed sheets & pillowcases','Bedroom','weekly','high','unassigned','',20);
+  add('Vacuum bedroom floors (incl. under bed)','Bedroom','weekly','medium','unassigned','',15);
+  add('Dust surfaces, lamps & nightstands','Bedroom','weekly','medium','unassigned','',10);
+  add('Tidy wardrobe & put away clothes','Bedroom','weekly','medium','unassigned','',10);
+  add('Vacuum mattress','Bedroom','monthly','medium','unassigned','Use upholstery attachment; sprinkle baking soda first',15);
+  add('Dust ceiling fan / light fitting','Bedroom','monthly','medium','unassigned','',10);
+  add('Wipe down windowsills','Bedroom','monthly','low','unassigned','',10);
+  add('Rotate mattress (head to foot)','Bedroom','quarterly','medium','unassigned','Even wear extends mattress life significantly',10);
+  add('Wash duvet / comforter','Bedroom','quarterly','medium','unassigned','Check care label — may need a large-capacity machine',15);
+  add('Wash all pillows','Bedroom','quarterly','medium','unassigned','Check care labels; use tennis balls in dryer to fluff',10);
+  add('Wash curtains or wipe blinds','Bedroom','yearly','low','unassigned','',30);
+  add('Declutter wardrobe','Bedroom','yearly','medium','unassigned','Donate or discard items not worn in the past 12 months',90);
+
+  // ── LIVING ROOM ───────────────────────────────────────────────────────────
+  add('Tidy living room — cushions, throws & surfaces','Living Room','daily','low','unassigned','',5);
+  add('Vacuum living room floors & rugs','Living Room','weekly','high','unassigned','',20);
+  add('Vacuum sofa & cushions','Living Room','weekly','medium','unassigned','Use upholstery attachment',15);
+  add('Dust shelves, TV unit & electronics','Living Room','weekly','medium','unassigned','',15);
+  add('Wipe coffee table & side tables','Living Room','weekly','low','unassigned','',5);
+  add('Clean TV screen (dry microfibre cloth only)','Living Room','monthly','low','unassigned','Never spray liquid directly onto the screen',5);
+  add('Dust air vents & wipe skirting boards','Living Room','monthly','medium','unassigned','',15);
+  add('Clean interior windows','Living Room','monthly','medium','unassigned','',20);
+  add('Shampoo or deep clean rugs','Living Room','quarterly','medium','unassigned','Hire a carpet cleaner machine or book a service',60);
+  add('Wash sofa throw covers','Living Room','quarterly','low','unassigned','',15);
+  add('Deep clean carpets (professional)','Living Room','yearly','medium','unassigned','Book a professional steam clean service',120);
+
+  // ── WHOLE HOME / HALLWAY ──────────────────────────────────────────────────
+  add('Vacuum stairs & hallway','Cleaning','weekly','medium','unassigned','',15);
+  add('Wipe front door, handles & letterbox','Cleaning','weekly','low','unassigned','',5);
+  add('Take out bins & recycling','Cleaning','weekly','high','unassigned','Check your local collection schedule',5);
+  add('Wipe all light switches & door handles','Cleaning','monthly','low','unassigned','Use a disinfectant wipe',10);
+  add('Sweep & tidy entryway and porch','Cleaning','monthly','low','unassigned','',10);
+  add('Wipe walls & scuffs in hallway','Cleaning','monthly','low','unassigned','A magic eraser works well on scuffs',10);
+  add('Wash all interior windows','Cleaning','quarterly','medium','unassigned','',60);
+  add('Wash exterior windows','Cleaning','quarterly','medium','unassigned','Use a window cleaning kit with an extension pole',60);
+
+  // ── LAUNDRY ───────────────────────────────────────────────────────────────
+  add('Do laundry — wash, dry, fold & put away','Laundry','weekly','high','unassigned','',45);
+  add('Clean dryer lint filter','Laundry','weekly','high','unassigned','Do this every single load — blocked lint is a fire hazard',3);
+  add('Run washing machine self-clean cycle','Laundry','monthly','medium','unassigned','Use a washing machine cleaner tablet or white vinegar',10);
+  add('Wipe washer door seal & inside drum','Laundry','monthly','medium','unassigned','Prevents mould and musty odours',10);
+  add('Inspect & clean dryer exhaust vent duct','Laundry','monthly','high','unassigned','Blocked vents are a leading cause of home fires',15);
+  add('Clean behind and under washer & dryer','Laundry','quarterly','medium','unassigned','Lint and dust accumulate behind appliances',20);
+
+  // ── GARDEN & YARD ─────────────────────────────────────────────────────────
+  add('Water & check outdoor potted plants','Garden','weekly','high','unassigned','',15);
+  add('Check & water indoor plants','Garden','weekly','medium','unassigned','Check soil moisture — do not overwater',10);
+  add('Tidy backyard — remove debris & store tools','Garden','weekly','low','unassigned','',10);
+  add('Mow lawn','Garden','monthly','high','unassigned','Taller cut in summer protects roots from heat',45);
+  add('Edge lawn borders & trim overgrowth','Garden','monthly','medium','unassigned','',20);
+  add('Weed garden beds','Garden','monthly','medium','unassigned','Best done after rain when soil is soft',30);
+  add('Feed and fertilise plants & lawn','Garden','monthly','medium','unassigned','Use appropriate fertiliser for each plant type',20);
+  add('Sweep patio & deck','Garden','monthly','medium','unassigned','',20);
+  add('Wipe down outdoor furniture','Garden','monthly','low','unassigned','Clean cushions and frames; store cushions if wet',20);
+  add('Prune shrubs, hedges & trees','Garden','quarterly','medium','unassigned','Avoid pruning flowering plants before they bloom',60);
+  add('Aerate lawn','Garden','quarterly','medium','unassigned','Use a fork or lawn aerator; improves drainage',30);
+  add('Check irrigation system & hose fittings','Garden','quarterly','medium','unassigned','Look for leaks, blockages or damaged sprinkler heads',15);
+  add('Repot or divide overgrown container plants','Garden','quarterly','low','unassigned','',45);
+  add('Apply seasonal lawn treatment','Garden','yearly','medium','unassigned','Spring or autumn feed depending on the season',20);
+  add('Power wash patio, driveway & paths','Garden','yearly','medium','unassigned','Hire a pressure washer or use your own',90);
+  add('Apply deck sealant or wood treatment','Garden','yearly','medium','unassigned','Clean the deck thoroughly first; apply on a dry day',60);
+  add('Service lawn mower (oil, blade & air filter)','Garden','yearly','high','unassigned','Sharpen the blade for cleaner cuts and a healthier lawn',30);
+  add('Check outdoor fences, gates & trellises','Garden','yearly','medium','unassigned','Repair loose boards and replace rusty hinges',20);
+
+  // ── HOME MAINTENANCE ──────────────────────────────────────────────────────
+  add('Test smoke detectors','Maintenance','monthly','high','unassigned','Press test button — replace unit if no alarm sounds',5);
+  add('Check & replace HVAC / air filters','Maintenance','monthly','high','unassigned','Replace every 1–3 months depending on filter type',15);
+  add('Check fire extinguisher pressure gauge','Maintenance','monthly','high','unassigned','Needle must be in the green zone; replace if expired',3);
+  add('Clean gutters & clear downspouts','Maintenance','quarterly','high','unassigned','Critical in autumn after leaves fall; check for blockages',60);
+  add('Test GFCI outlets & reset if needed','Maintenance','quarterly','high','unassigned','Press test/reset buttons on bathroom, kitchen & outdoor outlets',10);
+  add('Lubricate garage door tracks & springs','Maintenance','quarterly','medium','unassigned','Use silicone spray or dedicated garage door lubricant',15);
+  add('Inspect weatherstripping on doors & windows','Maintenance','quarterly','medium','unassigned','Replace if cracked, compressed or peeling',15);
+  add('Inspect attic / roof space for leaks or pests','Maintenance','quarterly','high','unassigned','Look for water stains, daylight gaps and signs of nesting',20);
+  add('Annual HVAC / boiler service','Maintenance','yearly','high','unassigned','Book a Gas Safe registered engineer or HVAC professional',120);
+  add('Flush water heater & check anode rod','Maintenance','yearly','high','unassigned','Flushes sediment; extends water heater life by years',45);
+  add('Check roof condition','Maintenance','yearly','high','unassigned','Look for missing, cracked or slipped tiles/shingles',30);
+  add('Re-caulk bathroom, kitchen & window frames','Maintenance','yearly','medium','unassigned','Replace cracked or discoloured caulk to prevent water damage',120);
+  add('Replace smoke & CO detector batteries','Maintenance','yearly','high','unassigned','Do this annually even if the device still seems to work',20);
+  add('Annual pest inspection','Maintenance','yearly','medium','unassigned','Book a licensed pest control professional',60);
+  add('Chimney & fireplace inspection','Maintenance','yearly','high','unassigned','Book a certified chimney sweep before heating season',90);
+
+  // ── CAR ───────────────────────────────────────────────────────────────────
+  add('Wash car exterior','Car','monthly','medium','unassigned','',30);
+  add('Clean car interior — vacuum & wipe all surfaces','Car','monthly','medium','unassigned','Don\'t forget cup holders, door pockets and boot',30);
+  add('Check tyre pressure & tread depth','Car','quarterly','high','unassigned','Check cold (before driving). See door placard for correct PSI',15);
+  add('Check all fluid levels (oil, coolant, washer, brake)','Car','quarterly','high','unassigned','Top up only with manufacturer-specified fluids',10);
+  add('Inspect wiper blades & replace if worn','Car','quarterly','medium','unassigned','Streaking or squeaking is a clear sign they need replacing',10);
+  add('Thorough interior detail — seats, boot & vents','Car','quarterly','medium','unassigned','',45);
+  add('Annual service & safety inspection','Car','yearly','high','unassigned','Book with your regular mechanic or main dealer',60);
+  add('Inspect brake pads & discs','Car','yearly','high','unassigned','Have a mechanic check if you\'re unsure of wear level',30);
+  add('Replace cabin air filter','Car','yearly','medium','unassigned','Usually located under the dashboard or behind the glove box',20);
+  add('Test car battery health & clean terminals','Car','yearly','high','unassigned','Most batteries last 3–5 years; get tested at a garage',15);
+  add('Full car detail (interior & exterior)','Car','yearly','low','unassigned','',120);
+
+  // ── ADMIN & HOUSEHOLD MANAGEMENT ─────────────────────────────────────────
+  add('Review household budget & bank statements','Admin','monthly','medium','unassigned','',20);
+  add('Pay any outstanding bills','Admin','monthly','high','unassigned','',10);
+  add('File important documents','Admin','monthly','low','unassigned','',15);
+  add('Review & cancel unused subscriptions','Admin','quarterly','medium','unassigned','',20);
+  add('Review home & contents insurance coverage','Admin','quarterly','high','unassigned','Ensure coverage keeps pace with any home improvements',20);
+  add('Organise all household documents','Admin','yearly','medium','unassigned','Warranties, manuals, insurance policies, deeds, receipts',60);
+  add('Renew home insurance (compare quotes first)','Admin','yearly','high','unassigned','Never auto-renew without comparing — savings can be significant',30);
+  add('Replenish home emergency kit','Admin','yearly','medium','unassigned','Torch, batteries, first aid kit, bottled water and cash',30);
+  add('Update home inventory for insurance','Admin','yearly','low','unassigned','Photograph valuables and update the asset list',45);
+
   return t;
 }
 
@@ -1031,8 +1144,8 @@ function freqLabel(f,intervalDays){
     quarterly:'Quarterly',yearly:'Yearly',asNeeded:'As needed'}[f]||f;
 }
 function catIcon(c){
-  return{Cleaning:'🧹',Kitchen:'🍳',Laundry:'👕',Bathroom:'🚿',Bedroom:'🛏',
-    Garden:'🌱',Maintenance:'🔧',Shopping:'🛒',Pets:'🐾',Admin:'📋',Other:'📌'}[c]||'📌';
+  return{Cleaning:'🧹','Living Room':'🛋️',Kitchen:'🍳',Laundry:'👕',Bathroom:'🚿',Bedroom:'🛏',
+    Garden:'🌿',Maintenance:'🔧',Car:'🚗',Shopping:'🛒',Pets:'🐾',Admin:'📋',Other:'📌'}[c]||'📌';
 }
 function aName(a){
   if(a==='me')return S.settings.myName;
@@ -1217,6 +1330,9 @@ function renderPage(){
 }
 
 // ─── TODAY VIEW ───────────────────────────────────────────────────────────────
+function timeGreeting(){const h=new Date().getHours();if(h<5)return'🌙 Good night';if(h<12)return'☀️ Good morning';if(h<17)return'🌤️ Good afternoon';return'🌙 Good evening';}
+function fmtDuration(mins){if(!mins)return'';if(mins<60)return mins+'m';const h=Math.floor(mins/60),m=mins%60;return m?`${h}h ${m}m`:`${h}h`;}
+
 function renderToday(){
   const all=S.tasks.filter(t=>t.active!==false);
   const overdue=all.filter(t=>taskStatus(t)==='overdue');
@@ -1239,7 +1355,18 @@ function renderToday(){
   const myPts=calcPoints('me');const wifePts=calcPoints('wife');
   const leader=myPts>wifePts?'me':wifePts>myPts?'wife':'tie';
   const claimable=all.filter(t=>t.assignedTo==='unassigned'&&['overdue','today','soon'].includes(taskStatus(t)));
+  const urgentTime=urgent.reduce((s,t)=>s+(t.duration||0),0);
+  const allDone=todayTotal>0&&donePct===100;
   return `
+    <div class="today-greeting">${timeGreeting()}, ${esc(S.settings.myName)}!</div>
+    ${allDone?`<div class="all-done-banner">
+      <div class="all-done-icon">🎉</div>
+      <div class="all-done-text">
+        <div class="all-done-title">All done for today!</div>
+        <div class="all-done-sub">Amazing work — you've completed everything on today's list.</div>
+      </div>
+      <div style="font-size:28px">🏆</div>
+    </div>`:''}
     ${myPts+wifePts>0?`<div class="points-banner">
       <div class="points-person">
         <div class="points-num">${myPts}</div>
@@ -1274,6 +1401,7 @@ function renderToday(){
         <span class="day-prog-pct">${donePct}% done</span>
       </div>
       <div class="prog-wrap"><div class="prog-bar prog-bar-ok" style="width:${donePct}%"></div></div>
+      ${urgentTime>0?`<div class="est-time-note">⏱ Estimated time remaining: ${fmtDuration(urgentTime)}</div>`:''}
     </div>`:''}
 
     ${claimable.length>0?`<div class="claim-section">
@@ -1380,10 +1508,11 @@ function renderItem(t){
           <span class="tag tag-freq">${freqLabel(t.frequency,t.intervalDays)}</span>
           ${dl&&st!=='upcoming'?`<span class="tag ${stTag}">${dl}</span>`:''}
           ${t.assignedTo!=='unassigned'?`<span class="tag ${aTag}">${esc(aName(t.assignedTo))}</span>`:''}
-          ${t.priority==='high'&&!done?`<span class="tag tag-overdue">High</span>`:''}
+          ${t.priority==='high'&&!done?`<span class="tag tag-high">🔴 High</span>`:''}
           ${t.streak>1?`<span class="streak">🔥 ${t.streak}</span>`:''}
           ${t.duration?`<span class="tag tag-cat">⏱ ${t.duration}m</span>`:''}
           ${subs.length>0?`<span class="subtask-badge" onclick="event.stopPropagation();toggleExpandSubtasks('${t.id}')">${subDone}/${subs.length} ✓</span>`:''}
+          ${t.notes?`<span class="tag tag-cat" title="${esc(t.notes)}" style="cursor:help">📝</span>`:''}
         </div>
         ${expanded&&subs.length>0?`<div class="subtask-inline">
           ${subs.map(s=>`<div class="subtask-inline-item${s.done?' done':''}" onclick="event.stopPropagation();toggleSubtask('${t.id}','${s.id}')">
@@ -1456,7 +1585,7 @@ function renderWeekly(){
           <div class="week-day-hdr">${weekDayLabel(day)}${isToday?' ·  Today':''}</div>
           <div class="week-day-body">
             ${show.length===0?`<div class="week-empty">Free</div>`:
-              show.map(t=>`<div class="week-task" onclick="openEdit('${t.id}')" title="${esc(t.title)}">${catIcon(t.category)} ${esc(t.title)}</div>`).join('')}
+              show.map(t=>{const isDone=t.lastCompleted===day;return`<div class="week-task${isDone?' week-task-done':''}" onclick="openEdit('${t.id}')" title="${esc(t.title)}">${isDone?'✓ ':''}${catIcon(t.category)} ${esc(t.title)}</div>`;}).join('')}
             ${more>0?`<div class="week-more">+${more} more</div>`:''}
           </div>
         </div>`;
@@ -1514,14 +1643,15 @@ function calcPoints(assignee, days=7){
 
 // ─── ROOMS VIEW ───────────────────────────────────────────────────────────────
 const ROOMS=[
-  {id:'kitchen', label:'Kitchen',      icon:'🍳',cats:['Kitchen']},
-  {id:'bathroom',label:'Bathroom',     icon:'🚿',cats:['Bathroom']},
-  {id:'bedroom', label:'Bedroom',      icon:'🛏️',cats:['Bedroom']},
-  {id:'living',  label:'Living Areas', icon:'🛋️',cats:['Cleaning']},
-  {id:'laundry', label:'Laundry',      icon:'👕',cats:['Laundry']},
-  {id:'garden',  label:'Garden',       icon:'🌱',cats:['Garden']},
-  {id:'maint',   label:'Maintenance',  icon:'🔧',cats:['Maintenance']},
-  {id:'other',   label:'Admin & Other',icon:'📋',cats:['Admin','Shopping','Pets','Other']},
+  {id:'kitchen', label:'Kitchen',       icon:'🍳', cats:['Kitchen']},
+  {id:'bathroom',label:'Bathroom',      icon:'🚿', cats:['Bathroom']},
+  {id:'bedroom', label:'Bedroom',       icon:'🛏️', cats:['Bedroom']},
+  {id:'living',  label:'Living Room',   icon:'🛋️', cats:['Living Room','Cleaning']},
+  {id:'laundry', label:'Laundry',       icon:'👕', cats:['Laundry']},
+  {id:'garden',  label:'Garden & Yard', icon:'🌿', cats:['Garden']},
+  {id:'maint',   label:'Maintenance',   icon:'🔧', cats:['Maintenance']},
+  {id:'car',     label:'Car',           icon:'🚗', cats:['Car']},
+  {id:'other',   label:'Admin & Other', icon:'📋', cats:['Admin','Shopping','Pets','Other']},
 ];
 
 function roomHealth(cats){
@@ -1584,6 +1714,7 @@ function filterByRoom(cats){
 // ─── SHOPPING VIEW ────────────────────────────────────────────────────────────
 function renderShopping(){
   const done=S.shopping.filter(x=>x.done).length;
+  const sorted=[...S.shopping].sort((a,b)=>a.done-b.done);
   return `<div class="shop-wrap">
     <div class="shop-add">
       <input type="text" id="shopInput" placeholder="Add item… (press Enter)"
@@ -1593,7 +1724,7 @@ function renderShopping(){
     <div class="shop-list">
       ${S.shopping.length===0
         ?'<div class="empty"><div class="empty-ico">🛒</div><div class="empty-ttl">List is empty</div><div class="empty-sub">Add items above</div></div>'
-        :S.shopping.map(item=>`
+        :sorted.map(item=>`
           <div class="shop-item">
             <div class="shop-check${item.done?' done':''}" onclick="toggleShoppingItem('${item.id}')">${item.done?'✓':''}</div>
             <span class="shop-text${item.done?' done':''}">${esc(item.text)}</span>
@@ -1835,6 +1966,17 @@ function renderSettings(){
     </div>`:''}
 
     <div class="set-section">
+      <div class="set-title">⌨️ Keyboard Shortcuts</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        ${[['/',  'Focus search'],['n',  'New task'],['1',  'Today'],['2',  'All Tasks'],['3',  'Rooms'],['4',  'Shopping'],['5',  'Weekly'],['6',  'History'],['7',  'Settings'],['Esc','Close modal']].map(([key,desc])=>`
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--c-bg-subtle);border-radius:var(--radius-sm)">
+            <kbd style="background:var(--c-bg-card);border:1.5px solid var(--c-border);border-radius:6px;padding:2px 8px;font-size:11.5px;font-weight:700;font-family:monospace;color:var(--c-text-muted);min-width:32px;text-align:center">${esc(key)}</kbd>
+            <span style="font-size:12.5px;color:var(--c-text-muted)">${esc(desc)}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="set-section">
       <div class="set-title">💾 Data</div>
       <p class="set-subtitle">Export a JSON backup at any time. Import to restore or migrate data.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -2074,6 +2216,7 @@ function toast(msg,type){
 document.addEventListener('keydown',e=>{
   if(['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
   if(e.key==='Escape'){['taskModal','completeModal','archiveModal'].forEach(id=>closeModal(id));}
+  else if(e.key==='/')  {e.preventDefault();const si=document.getElementById('searchInput');if(si){si.focus();si.select();}}
   else if(e.key==='n')openCreate();
   else if(e.key==='1')navigate('today');
   else if(e.key==='2')navigate('tasks');
