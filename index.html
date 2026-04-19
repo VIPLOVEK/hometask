@@ -443,25 +443,69 @@
     /* ── SHOPPING VIEW ───────────────────────────────────────────── */
     .shop-wrap{background:var(--c-bg-card);border-radius:var(--radius);
       border:1px solid var(--c-border);box-shadow:var(--shadow-sm);overflow:hidden;max-width:600px}
-    .shop-add{display:flex;gap:8px;padding:14px 16px;border-bottom:1px solid var(--c-border)}
+    /* Staples */
+    .staples-section{border-bottom:1px solid var(--c-border);padding:10px 14px 12px}
+    .staples-hdr{font-size:10.5px;font-weight:700;color:var(--c-text-muted);
+      text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px}
+    .staples-scroll{display:flex;gap:5px;flex-wrap:wrap;max-height:86px;overflow-y:auto;
+      scrollbar-width:none}
+    .staples-scroll::-webkit-scrollbar{display:none}
+    .staple-chip{padding:4px 11px;border-radius:100px;border:1px solid var(--c-border-in);
+      background:var(--c-bg-subtle);font-size:12px;font-weight:500;color:var(--c-text);
+      cursor:pointer;white-space:nowrap;transition:all var(--t);flex-shrink:0}
+    .staple-chip:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-lt)}
+    .staple-chip.in-list{opacity:.32;cursor:default;pointer-events:none}
+    /* Add form */
+    .shop-add{display:flex;gap:7px;padding:12px 14px 0;align-items:center}
     .shop-add input{flex:1;padding:9px 12px;border:1.5px solid var(--c-border-in);
       border-radius:var(--radius-sm);font-size:13.5px;color:var(--c-text);
       background:var(--c-bg-input);outline:none;transition:border-color var(--t);font-family:inherit}
     .shop-add input:focus{border-color:var(--primary)}
     .shop-add input::placeholder{color:var(--c-text-dim)}
-    .shop-list{padding:6px}
-    .shop-item{display:flex;align-items:center;gap:10px;padding:10px 10px;
+    .shop-qty-ctrl{display:flex;align-items:center;gap:2px;flex-shrink:0}
+    .shop-qty-btn{width:24px;height:24px;border-radius:6px;border:1.5px solid var(--c-border-in);
+      background:var(--c-bg-subtle);font-size:15px;font-weight:700;cursor:pointer;
+      color:var(--c-text);display:flex;align-items:center;justify-content:center;
+      transition:all var(--t);line-height:1;padding:0}
+    .shop-qty-btn:hover{border-color:var(--primary);color:var(--primary)}
+    .shop-qty-val{min-width:22px;text-align:center;font-size:12.5px;font-weight:700;color:var(--c-text)}
+    .shop-opts{display:flex;gap:8px;padding:8px 14px 12px;flex-wrap:wrap;
+      align-items:center;border-bottom:1px solid var(--c-border)}
+    .shop-opts select,.shop-note-in{padding:6px 9px;border:1.5px solid var(--c-border-in);
+      border-radius:var(--radius-sm);font-size:12px;color:var(--c-text);
+      background:var(--c-bg-input);outline:none;font-family:inherit;
+      transition:border-color var(--t)}
+    .shop-opts select:focus,.shop-note-in:focus{border-color:var(--primary)}
+    .shop-opts select{cursor:pointer}
+    .shop-note-in{flex:1;min-width:110px}
+    .shop-note-in::placeholder{color:var(--c-text-dim)}
+    .shop-recur-lbl{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;
+      color:var(--c-text-muted);cursor:pointer;user-select:none;white-space:nowrap}
+    .shop-recur-lbl input{accent-color:var(--primary)}
+    /* Category headers */
+    .shop-cat-hdr{display:flex;align-items:center;gap:6px;padding:9px 12px 3px;
+      font-size:10.5px;font-weight:700;color:var(--c-text-muted);
+      text-transform:uppercase;letter-spacing:.06em}
+    /* List */
+    .shop-list{padding:4px 6px}
+    .shop-item{display:flex;align-items:flex-start;gap:10px;padding:8px 8px;
       border-radius:var(--radius-sm);transition:background var(--t)}
     .shop-item:hover{background:var(--c-bg-subtle)}
     .shop-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--c-border-in);
-      flex-shrink:0;display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;
       cursor:pointer;transition:all var(--t);color:#fff;font-size:11px;font-weight:700}
     .shop-check:hover{border-color:var(--ok)}
     .shop-check.done{background:var(--ok);border-color:var(--ok)}
-    .shop-text{flex:1;font-size:13.5px;color:var(--c-text);font-weight:500}
-    .shop-text.done{text-decoration:line-through;color:var(--c-text-dim)}
+    .shop-item-body{flex:1;min-width:0}
+    .shop-item-name{font-size:13.5px;font-weight:500;color:var(--c-text)}
+    .shop-item-name.done{text-decoration:line-through;color:var(--c-text-dim)}
+    .shop-item-meta{display:flex;align-items:center;gap:5px;margin-top:2px;flex-wrap:wrap}
+    .shop-qty-tag{font-size:11px;font-weight:600;color:var(--primary);
+      background:var(--primary-lt);padding:1px 5px;border-radius:4px}
+    .shop-note-tag{font-size:11.5px;color:var(--c-text-dim)}
+    .shop-recur-tag{font-size:10px;color:var(--c-text-dim)}
     .shop-del{width:26px;height:26px;border-radius:6px;border:none;background:none;
-      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
       font-size:13px;color:var(--c-text-dim);opacity:0;transition:all var(--t)}
     .shop-item:hover .shop-del{opacity:1}
     .shop-del:hover{background:var(--danger-lt);color:var(--danger)}
@@ -914,6 +958,7 @@ function load(){
         if(d.settings.notifications)S.settings.notifications={...S.settings.notifications,...d.settings.notifications};}
     }else{S.tasks=defaultTasks();cacheLocal();}
   }catch(e){S.tasks=defaultTasks();}
+  restoreRecurringItems();
   const jb=getJBConfig();
   if(jb){S.syncStatus='connecting';pullFromCloud().then(ok=>{S.syncStatus=ok?'connected':'error';renderAll();});}
 }
@@ -1712,48 +1757,213 @@ function filterByRoom(cats){
 }
 
 // ─── SHOPPING VIEW ────────────────────────────────────────────────────────────
+const SHOP_CATS=[
+  {id:'produce',   label:'Produce',         icon:'🥬'},
+  {id:'dairy',     label:'Dairy & Eggs',    icon:'🥛'},
+  {id:'meat',      label:'Meat & Fish',     icon:'🥩'},
+  {id:'bakery',    label:'Bakery & Bread',  icon:'🍞'},
+  {id:'pantry',    label:'Pantry & Dry',    icon:'🥫'},
+  {id:'frozen',    label:'Frozen',          icon:'🧊'},
+  {id:'drinks',    label:'Drinks & Snacks', icon:'🥤'},
+  {id:'cleaning',  label:'Cleaning',        icon:'🧹'},
+  {id:'personal',  label:'Personal Care',   icon:'🧴'},
+  {id:'household', label:'Household',       icon:'🏠'},
+  {id:'health',    label:'Health & Meds',   icon:'💊'},
+  {id:'other',     label:'Other',           icon:'📦'},
+];
+const STAPLES=[
+  {text:'Bananas',          cat:'Produce',        qty:1},
+  {text:'Apples',           cat:'Produce',        qty:4},
+  {text:'Spinach',          cat:'Produce',        qty:1},
+  {text:'Tomatoes',         cat:'Produce',        qty:4},
+  {text:'Onions',           cat:'Produce',        qty:3},
+  {text:'Garlic',           cat:'Produce',        qty:1},
+  {text:'Avocados',         cat:'Produce',        qty:2},
+  {text:'Lemons',           cat:'Produce',        qty:3},
+  {text:'Potatoes',         cat:'Produce',        qty:1},
+  {text:'Carrots',          cat:'Produce',        qty:1},
+  {text:'Broccoli',         cat:'Produce',        qty:1},
+  {text:'Bell peppers',     cat:'Produce',        qty:2},
+  {text:'Milk',             cat:'Dairy & Eggs',   qty:2},
+  {text:'Eggs',             cat:'Dairy & Eggs',   qty:12},
+  {text:'Butter',           cat:'Dairy & Eggs',   qty:1},
+  {text:'Cheddar',          cat:'Dairy & Eggs',   qty:1},
+  {text:'Greek yogurt',     cat:'Dairy & Eggs',   qty:2},
+  {text:'Cream',            cat:'Dairy & Eggs',   qty:1},
+  {text:'Parmesan',         cat:'Dairy & Eggs',   qty:1},
+  {text:'Chicken breast',   cat:'Meat & Fish',    qty:1},
+  {text:'Ground beef',      cat:'Meat & Fish',    qty:1},
+  {text:'Salmon fillets',   cat:'Meat & Fish',    qty:2},
+  {text:'Bacon',            cat:'Meat & Fish',    qty:1},
+  {text:'Sausages',         cat:'Meat & Fish',    qty:1},
+  {text:'Bread',            cat:'Bakery & Bread', qty:1},
+  {text:'Sourdough',        cat:'Bakery & Bread', qty:1},
+  {text:'Pasta',            cat:'Pantry & Dry',   qty:2},
+  {text:'Rice',             cat:'Pantry & Dry',   qty:1},
+  {text:'Olive oil',        cat:'Pantry & Dry',   qty:1},
+  {text:'Canned tomatoes',  cat:'Pantry & Dry',   qty:2},
+  {text:'Coffee',           cat:'Pantry & Dry',   qty:1},
+  {text:'Tea bags',         cat:'Pantry & Dry',   qty:1},
+  {text:'Oats',             cat:'Pantry & Dry',   qty:1},
+  {text:'Chicken stock',    cat:'Pantry & Dry',   qty:2},
+  {text:'Soy sauce',        cat:'Pantry & Dry',   qty:1},
+  {text:'Honey',            cat:'Pantry & Dry',   qty:1},
+  {text:'Orange juice',     cat:'Drinks & Snacks',qty:1},
+  {text:'Sparkling water',  cat:'Drinks & Snacks',qty:6},
+  {text:'Dish soap',        cat:'Cleaning',       qty:1},
+  {text:'Laundry detergent',cat:'Cleaning',       qty:1},
+  {text:'Paper towels',     cat:'Cleaning',       qty:2},
+  {text:'Bin bags',         cat:'Cleaning',       qty:1},
+  {text:'Sponges',          cat:'Cleaning',       qty:1},
+  {text:'Toilet cleaner',   cat:'Cleaning',       qty:1},
+  {text:'Shampoo',          cat:'Personal Care',  qty:1},
+  {text:'Toothpaste',       cat:'Personal Care',  qty:1},
+  {text:'Hand soap',        cat:'Personal Care',  qty:1},
+  {text:'Deodorant',        cat:'Personal Care',  qty:1},
+  {text:'Toilet paper',     cat:'Household',      qty:1},
+  {text:'Kitchen roll',     cat:'Household',      qty:1},
+  {text:'Zip-lock bags',    cat:'Household',      qty:1},
+  {text:'Aluminium foil',   cat:'Household',      qty:1},
+];
+let _shopQty=1;
+
 function renderShopping(){
-  const done=S.shopping.filter(x=>x.done).length;
-  const sorted=[...S.shopping].sort((a,b)=>a.done-b.done);
+  const active=S.shopping.filter(x=>!x.done);
+  const doneItems=S.shopping.filter(x=>x.done);
+  const inListSet=new Set(active.map(x=>x.text.toLowerCase()));
+  // Group active items by store category
+  const catOrder=SHOP_CATS.map(c=>c.label);
+  const byCat={};
+  active.forEach(item=>{
+    const cat=item.category||'Other';
+    if(!byCat[cat])byCat[cat]=[];
+    byCat[cat].push(item);
+  });
+  const catKeys=[...catOrder.filter(c=>byCat[c]),...Object.keys(byCat).filter(c=>!catOrder.includes(c))];
   return `<div class="shop-wrap">
+    <div class="staples-section">
+      <div class="staples-hdr">Quick add</div>
+      <div class="staples-scroll">
+        ${STAPLES.map(s=>`<button class="staple-chip${inListSet.has(s.text.toLowerCase())?' in-list':''}"
+          data-text="${esc(s.text)}" data-cat="${esc(s.cat)}" data-qty="${s.qty}"
+          onclick="addStapleFromEl(this)" title="${esc(s.cat)}">${esc(s.text)}</button>`).join('')}
+      </div>
+    </div>
     <div class="shop-add">
       <input type="text" id="shopInput" placeholder="Add item… (press Enter)"
              onkeydown="if(event.key==='Enter')addShoppingItem()">
+      <div class="shop-qty-ctrl">
+        <button class="shop-qty-btn" onclick="shopQtyAdj(-1)">−</button>
+        <span class="shop-qty-val" id="shopQtyVal">${_shopQty}</span>
+        <button class="shop-qty-btn" onclick="shopQtyAdj(1)">+</button>
+      </div>
       <button class="btn btn-primary btn-sm" onclick="addShoppingItem()">Add</button>
     </div>
+    <div class="shop-opts">
+      <select id="shopCat">
+        ${SHOP_CATS.map(c=>`<option value="${c.label}">${c.icon} ${c.label}</option>`).join('')}
+      </select>
+      <input type="text" class="shop-note-in" id="shopNote" placeholder="Note (optional)">
+      <label class="shop-recur-lbl" title="Auto-restores to list each week after being cleared">
+        <input type="checkbox" id="shopRecurring"> 🔄 Weekly
+      </label>
+    </div>
     <div class="shop-list">
-      ${S.shopping.length===0
-        ?'<div class="empty"><div class="empty-ico">🛒</div><div class="empty-ttl">List is empty</div><div class="empty-sub">Add items above</div></div>'
-        :sorted.map(item=>`
-          <div class="shop-item">
-            <div class="shop-check${item.done?' done':''}" onclick="toggleShoppingItem('${item.id}')">${item.done?'✓':''}</div>
-            <span class="shop-text${item.done?' done':''}">${esc(item.text)}</span>
-            <button class="shop-del" onclick="deleteShoppingItem('${item.id}')" title="Remove">✕</button>
-          </div>`).join('')}
+      ${active.length===0&&doneItems.length===0
+        ?'<div class="empty"><div class="empty-ico">🛒</div><div class="empty-ttl">List is empty</div><div class="empty-sub">Use quick-add or type above</div></div>'
+        :catKeys.map(cat=>{
+          const catDef=SHOP_CATS.find(c=>c.label===cat)||{icon:'📦',label:cat};
+          return `<div class="shop-cat-hdr">${catDef.icon} ${esc(cat)}</div>`+
+            byCat[cat].map(item=>shopItemHTML(item)).join('');
+        }).join('')}
+      ${doneItems.length>0?`
+        <div class="shop-cat-hdr" style="opacity:.45;margin-top:4px">✓ Checked off</div>
+        ${doneItems.map(item=>shopItemHTML(item)).join('')}
+      `:''}
     </div>
     ${S.shopping.length>0?`<div class="shop-footer">
-      <span class="shop-count">${done} of ${S.shopping.length} checked</span>
-      ${done>0?`<button class="btn btn-secondary btn-sm" onclick="clearCheckedShopping()">Clear checked</button>`:''}
+      <span class="shop-count">${doneItems.length} of ${S.shopping.length} checked</span>
+      ${doneItems.length>0?`<button class="btn btn-secondary btn-sm" onclick="clearCheckedShopping()">Clear checked</button>`:''}
     </div>`:''}
   </div>`;
+}
+
+function shopItemHTML(item){
+  const qty=item.qty||1;
+  const note=item.note||'';
+  const recur=item.recurring||false;
+  const hasMeta=qty>1||note||recur;
+  return `<div class="shop-item">
+    <div class="shop-check${item.done?' done':''}" onclick="toggleShoppingItem('${item.id}')">${item.done?'✓':''}</div>
+    <div class="shop-item-body">
+      <div class="shop-item-name${item.done?' done':''}">${esc(item.text)}</div>
+      ${hasMeta?`<div class="shop-item-meta">
+        ${qty>1?`<span class="shop-qty-tag">×${qty}</span>`:''}
+        ${note?`<span class="shop-note-tag">${esc(note)}</span>`:''}
+        ${recur?`<span class="shop-recur-tag">🔄 weekly</span>`:''}
+      </div>`:''}
+    </div>
+    <button class="shop-del" onclick="deleteShoppingItem('${item.id}')" title="Remove">✕</button>
+  </div>`;
+}
+
+function shopQtyAdj(d){
+  _shopQty=Math.max(1,(_shopQty||1)+d);
+  const el=document.getElementById('shopQtyVal');
+  if(el)el.textContent=_shopQty;
 }
 
 function addShoppingItem(){
   const inp=document.getElementById('shopInput');if(!inp)return;
   const text=inp.value.trim();if(!text)return;
-  S.shopping.push({id:uid(),text,done:false,addedAt:today()});
-  inp.value='';save();renderPage();
+  const cat=document.getElementById('shopCat')?.value||'Other';
+  const note=document.getElementById('shopNote')?.value.trim()||'';
+  const recurring=document.getElementById('shopRecurring')?.checked||false;
+  S.shopping.push({id:uid(),text,qty:_shopQty,note,category:cat,
+    recurring,done:false,addedAt:today(),doneAt:null});
+  inp.value='';_shopQty=1;save();renderPage();
   setTimeout(()=>document.getElementById('shopInput')?.focus(),50);
 }
+
+function addStaple(text,cat,qty){
+  if(S.shopping.find(x=>!x.done&&x.text.toLowerCase()===text.toLowerCase()))return;
+  S.shopping.push({id:uid(),text,qty:qty||1,note:'',category:cat,
+    recurring:false,done:false,addedAt:today(),doneAt:null});
+  save();renderPage();
+}
+function addStapleFromEl(el){
+  addStaple(el.dataset.text, el.dataset.cat, parseInt(el.dataset.qty)||1);
+}
+
 function toggleShoppingItem(id){
   const i=S.shopping.findIndex(x=>x.id===id);if(i<0)return;
-  S.shopping[i].done=!S.shopping[i].done;save();renderPage();
+  S.shopping[i].done=!S.shopping[i].done;
+  S.shopping[i].doneAt=S.shopping[i].done?today():null;
+  save();renderPage();
 }
 function deleteShoppingItem(id){
   S.shopping=S.shopping.filter(x=>x.id!==id);save();renderPage();
 }
 function clearCheckedShopping(){
-  S.shopping=S.shopping.filter(x=>!x.done);save();renderPage();
+  // Recurring items come back; non-recurring are removed
+  S.shopping=S.shopping.filter(x=>{
+    if(!x.done)return true;
+    if(x.recurring){x.done=false;x.doneAt=null;return true;}
+    return false;
+  });
+  save();renderPage();
+}
+function restoreRecurringItems(){
+  const now=new Date();
+  let changed=false;
+  S.shopping.forEach(item=>{
+    if(!item.done||!item.recurring)return;
+    const doneDate=item.doneAt?new Date(item.doneAt):null;
+    if(!doneDate)return;
+    const daysSince=Math.floor((now-doneDate)/(1000*60*60*24));
+    if(daysSince>=7){item.done=false;item.doneAt=null;changed=true;}
+  });
+  if(changed)save();
 }
 
 // ─── ANALYTICS CHARTS ────────────────────────────────────────────────────────
